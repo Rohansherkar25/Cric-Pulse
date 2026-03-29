@@ -9,219 +9,234 @@ const API_BASE = 'http://localhost:5000/api';
 
 const MOCK = {
   liveMatches: [
-    // matchId: 'mock-N' triggers the mock scorecard path in loadModalScorecard
-    { id:1, matchId:'mock-0', type:'T20 International', status:'live',   venue:'Wankhede Stadium, Mumbai',      team1:{name:'IND',flag:'🇮🇳',score:'187/4',overs:'18.3'}, team2:{name:'AUS',flag:'🇦🇺',score:'142/3',overs:'16.0'}, crr:'CRR: 8.87' },
-    { id:2, matchId:'mock-1', type:'ODI',               status:'live',   venue:"Lord's Cricket Ground, London", team1:{name:'ENG',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',score:'312/7',overs:'50.0'}, team2:{name:'NZ', flag:'🇳🇿',score:'278/9',overs:'47.2'}, crr:'CRR: 5.93' },
-    { id:3, matchId:'mock-2', type:'Test — Day 3',      status:'live',   venue:'MCG, Melbourne',                team1:{name:'SA', flag:'🇿🇦',score:'430/8',overs:'110.4'},team2:{name:'PAK',flag:'🇵🇰',score:'210/3',overs:'68.0'}, crr:'CRR: 3.08' },
-    { id:4, matchId:'mock-3', type:'T20 — IPL',         status:'upcoming',venue:'Eden Gardens, Kolkata',        team1:{name:'KKR',flag:'🟣',score:'TBD',overs:''},        team2:{name:'MI', flag:'🔵',score:'TBD',overs:''},        crr:'Starts in 2h 15m' },
-    { id:5, matchId:'mock-4', type:'ODI',               status:'completed',venue:'SCG, Sydney',                 team1:{name:'WI', flag:'🏝️',score:'254/9',overs:'50.0'}, team2:{name:'SL', flag:'🇱🇰',score:'231/10',overs:'46.3'},crr:'WI won by 23 runs' },
+    { id: 1, type: 'T20 International', status: 'live', venue: 'Wankhede Stadium, Mumbai', team1: { name: 'IND', flag: '🇮🇳', score: '187/4', overs: '18.3' }, team2: { name: 'AUS', flag: '🇦🇺', score: '142/3', overs: '16.0' }, crr: 'CRR: 8.87' },
+    { id: 2, type: 'ODI', status: 'live', venue: "Lord's Cricket Ground, London", team1: { name: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', score: '312/7', overs: '50.0' }, team2: { name: 'NZ', flag: '🇳🇿', score: '278/9', overs: '47.2' }, crr: 'CRR: 5.93' },
+    { id: 3, type: 'Test — Day 3', status: 'live', venue: 'MCG, Melbourne', team1: { name: 'SA', flag: '🇿🇦', score: '430/8', overs: '110.4' }, team2: { name: 'PAK', flag: '🇵🇰', score: '210/3', overs: '68.0' }, crr: 'CRR: 3.08' },
+    { id: 4, type: 'T20 — IPL', status: 'upcoming', venue: 'Eden Gardens, Kolkata', team1: { name: 'KKR', flag: '🟣', score: 'TBD', overs: '' }, team2: { name: 'MI', flag: '🔵', score: 'TBD', overs: '' }, crr: 'Starts in 2h 15m' },
+    { id: 5, type: 'ODI', status: 'completed', venue: 'SCG, Sydney', team1: { name: 'WI', flag: '🏝️', score: '254/9', overs: '50.0' }, team2: { name: 'SL', flag: '🇱🇰', score: '231/10', overs: '46.3' }, crr: 'WI won by 23 runs' },
   ],
 
   scorecards: [
     {
-      match:'IND vs AUS — T20I, Wankhede', status:'live',
-      team1:{name:'INDIA',flag:'🇮🇳',score:'187/4',overs:'18.3'},
-      team2:{name:'AUSTRALIA',flag:'🇦🇺',score:'142/3',overs:'16.0'},
-      crr:'10.11', rrr:'14.23',
-      batting:[
-        {name:'Rohit Sharma',   runs:62, balls:38, fours:6, sixes:3, sr:163.2, status:'out', how:'c Maxwell b Starc'},
-        {name:'Virat Kohli',    runs:78, balls:52, fours:7, sixes:2, sr:150.0, status:'batting', how:'not out'},
-        {name:'Suryakumar Yadav',runs:31,balls:16, fours:2, sixes:3, sr:193.8, status:'batting', how:'not out'},
-        {name:'KL Rahul',       runs:9,  balls:7,  fours:1, sixes:0, sr:128.6, status:'out', how:'b Cummins'},
-        {name:'Hardik Pandya',  runs:5,  balls:3,  fours:0, sixes:1, sr:166.7, status:'out', how:'run out'},
+      match: 'IND vs AUS — T20I, Wankhede', status: 'live',
+      team1: { name: 'INDIA', flag: '🇮🇳', score: '187/4', overs: '18.3' },
+      team2: { name: 'AUSTRALIA', flag: '🇦🇺', score: '142/3', overs: '16.0' },
+      crr: '10.11', rrr: '14.23',
+      batting: [
+        { name: 'Rohit Sharma', runs: 62, balls: 38, fours: 6, sixes: 3, sr: 163.2, status: 'out', how: 'c Maxwell b Starc' },
+        { name: 'Virat Kohli', runs: 78, balls: 52, fours: 7, sixes: 2, sr: 150.0, status: 'batting', how: 'not out' },
+        { name: 'Suryakumar Yadav', runs: 31, balls: 16, fours: 2, sixes: 3, sr: 193.8, status: 'batting', how: 'not out' },
+        { name: 'KL Rahul', runs: 9, balls: 7, fours: 1, sixes: 0, sr: 128.6, status: 'out', how: 'b Cummins' },
+        { name: 'Hardik Pandya', runs: 5, balls: 3, fours: 0, sixes: 1, sr: 166.7, status: 'out', how: 'run out' },
       ],
-      bowling:[
-        {name:'Pat Cummins',    overs:'4.0', maiden:0, runs:38, wkts:2, econ:9.5},
-        {name:'Mitchell Starc', overs:'3.3', maiden:0, runs:42, wkts:1, econ:12.0},
-        {name:'Adam Zampa',     overs:'4.0', maiden:0, runs:29, wkts:0, econ:7.3},
-        {name:'Glenn Maxwell',  overs:'3.0', maiden:0, runs:31, wkts:1, econ:10.3},
-        {name:'Josh Hazlewood', overs:'4.0', maiden:0, runs:40, wkts:0, econ:10.0},
+      bowling: [
+        { name: 'Pat Cummins', overs: '4.0', maiden: 0, runs: 38, wkts: 2, econ: 9.5 },
+        { name: 'Mitchell Starc', overs: '3.3', maiden: 0, runs: 42, wkts: 1, econ: 12.0 },
+        { name: 'Adam Zampa', overs: '4.0', maiden: 0, runs: 29, wkts: 0, econ: 7.3 },
+        { name: 'Glenn Maxwell', overs: '3.0', maiden: 0, runs: 31, wkts: 1, econ: 10.3 },
+        { name: 'Josh Hazlewood', overs: '4.0', maiden: 0, runs: 40, wkts: 0, econ: 10.0 },
       ],
-      ballByBall:[
-        {over:16, balls:['1','W','4','2','6','1']},
-        {over:17, balls:['6','1','4','2','1','W']},
-        {over:18, balls:['4','6','1','2','WD','1']},
+      ballByBall: [
+        { over: 16, balls: ['1', 'W', '4', '2', '6', '1'] },
+        { over: 17, balls: ['6', '1', '4', '2', '1', 'W'] },
+        { over: 18, balls: ['4', '6', '1', '2', 'WD', '1'] },
       ],
-      fow:[
-        {score:'32/1', name:'Shubman Gill',     over:'3.2'},
-        {score:'89/2', name:'Rohit Sharma',      over:'9.4'},
-        {score:'112/3',name:'KL Rahul',          over:'13.1'},
-        {score:'159/4',name:'Hardik Pandya',     over:'16.5'},
-      ],
-    },
-    {
-      match:"ENG vs NZ — ODI, Lord's", status:'live',
-      team1:{name:'ENGLAND',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',score:'312/7',overs:'50.0'},
-      team2:{name:'NEW ZEALAND',flag:'🇳🇿',score:'278/9',overs:'47.2'},
-      crr:'5.93', rrr:'—',
-      batting:[
-        {name:'Will Young',      runs:88, balls:102,fours:9, sixes:1, sr:86.3, status:'batting', how:'not out'},
-        {name:'Tom Latham',      runs:54, balls:67, fours:5, sixes:0, sr:80.6, status:'out',    how:'c Root b Archer'},
-        {name:'Kane Williamson', runs:41, balls:55, fours:3, sixes:0, sr:74.5, status:'out',    how:'b Woakes'},
-        {name:'Daryl Mitchell',  runs:49, balls:42, fours:4, sixes:2, sr:116.7,status:'batting', how:'not out'},
-        {name:'Glenn Phillips',  runs:12, balls:9,  fours:1, sixes:1, sr:133.3,status:'out',    how:'lbw b Rashid'},
-      ],
-      bowling:[
-        {name:'Jofra Archer',   overs:'9.2',maiden:1,runs:49,wkts:3,econ:5.3},
-        {name:'Chris Woakes',   overs:'10.0',maiden:0,runs:54,wkts:2,econ:5.4},
-        {name:'Adil Rashid',    overs:'10.0',maiden:0,runs:48,wkts:2,econ:4.8},
-        {name:'Mark Wood',      overs:'9.0', maiden:0,runs:58,wkts:1,econ:6.4},
-        {name:'Joe Root',       overs:'9.0', maiden:0,runs:47,wkts:1,econ:5.2},
-      ],
-      ballByBall:[
-        {over:45,balls:['1','2','4','W','1','6']},
-        {over:46,balls:['0','1','1','W','4','2']},
-        {over:47,balls:['6','1','W','2']},
-      ],
-      fow:[
-        {score:'58/1', name:'Devon Conway',   over:'12.3'},
-        {score:'142/2',name:'Tom Latham',     over:'27.5'},
-        {score:'178/3',name:'Kane Williamson',over:'33.2'},
-        {score:'214/4',name:'Glenn Phillips', over:'38.4'},
-        {score:'241/5',name:'Michael Bracewell',over:'43.1'},
+      fow: [
+        { score: '32/1', name: 'Shubman Gill', over: '3.2' },
+        { score: '89/2', name: 'Rohit Sharma', over: '9.4' },
+        { score: '112/3', name: 'KL Rahul', over: '13.1' },
+        { score: '159/4', name: 'Hardik Pandya', over: '16.5' },
       ],
     },
     {
-      match:'SA vs PAK — Test, MCG', status:'live',
-      team1:{name:'SOUTH AFRICA',flag:'🇿🇦',score:'430/8',overs:'110.4'},
-      team2:{name:'PAKISTAN',flag:'🇵🇰',score:'210/3',overs:'68.0'},
-      crr:'3.08', rrr:'—',
-      batting:[
-        {name:'Imam-ul-Haq',    runs:74, balls:142,fours:7,sixes:0,sr:52.1,status:'batting',how:'not out'},
-        {name:'Babar Azam',     runs:61, balls:118,fours:6,sixes:0,sr:51.7,status:'batting',how:'not out'},
-        {name:'Abdullah Shafique',runs:34,balls:89,fours:4,sixes:0,sr:38.2,status:'out',   how:'c Bavuma b Rabada'},
-        {name:'Shan Masood',    runs:28, balls:67,fours:3,sixes:0,sr:41.8,status:'out',    how:'b Nortje'},
+      match: "ENG vs NZ — ODI, Lord's", status: 'live',
+      team1: { name: 'ENGLAND', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', score: '312/7', overs: '50.0' },
+      team2: { name: 'NEW ZEALAND', flag: '🇳🇿', score: '278/9', overs: '47.2' },
+      crr: '5.93', rrr: '—',
+      batting: [
+        { name: 'Will Young', runs: 88, balls: 102, fours: 9, sixes: 1, sr: 86.3, status: 'batting', how: 'not out' },
+        { name: 'Tom Latham', runs: 54, balls: 67, fours: 5, sixes: 0, sr: 80.6, status: 'out', how: 'c Root b Archer' },
+        { name: 'Kane Williamson', runs: 41, balls: 55, fours: 3, sixes: 0, sr: 74.5, status: 'out', how: 'b Woakes' },
+        { name: 'Daryl Mitchell', runs: 49, balls: 42, fours: 4, sixes: 2, sr: 116.7, status: 'batting', how: 'not out' },
+        { name: 'Glenn Phillips', runs: 12, balls: 9, fours: 1, sixes: 1, sr: 133.3, status: 'out', how: 'lbw b Rashid' },
       ],
-      bowling:[
-        {name:'Kagiso Rabada',  overs:'18.0',maiden:3,runs:52,wkts:1,econ:2.9},
-        {name:'Anrich Nortje',  overs:'17.0',maiden:2,runs:48,wkts:1,econ:2.8},
-        {name:'Marco Jansen',   overs:'15.0',maiden:1,runs:44,wkts:1,econ:2.9},
-        {name:'Keshav Maharaj', overs:'18.0',maiden:4,runs:41,wkts:0,econ:2.3},
+      bowling: [
+        { name: 'Jofra Archer', overs: '9.2', maiden: 1, runs: 49, wkts: 3, econ: 5.3 },
+        { name: 'Chris Woakes', overs: '10.0', maiden: 0, runs: 54, wkts: 2, econ: 5.4 },
+        { name: 'Adil Rashid', overs: '10.0', maiden: 0, runs: 48, wkts: 2, econ: 4.8 },
+        { name: 'Mark Wood', overs: '9.0', maiden: 0, runs: 58, wkts: 1, econ: 6.4 },
+        { name: 'Joe Root', overs: '9.0', maiden: 0, runs: 47, wkts: 1, econ: 5.2 },
       ],
-      ballByBall:[
-        {over:66,balls:['0','1','0','1','0','4']},
-        {over:67,balls:['0','0','1','0','0','1']},
-        {over:68,balls:['1','0','0','2']},
+      ballByBall: [
+        { over: 45, balls: ['1', '2', '4', 'W', '1', '6'] },
+        { over: 46, balls: ['0', '1', '1', 'W', '4', '2'] },
+        { over: 47, balls: ['6', '1', 'W', '2'] },
       ],
-      fow:[
-        {score:'62/1', name:'Shan Masood',       over:'19.3'},
-        {score:'116/2',name:'Abdullah Shafique',  over:'39.1'},
-        {score:'134/3',name:'Saud Shakeel',       over:'44.2'},
+      fow: [
+        { score: '58/1', name: 'Devon Conway', over: '12.3' },
+        { score: '142/2', name: 'Tom Latham', over: '27.5' },
+        { score: '178/3', name: 'Kane Williamson', over: '33.2' },
+        { score: '214/4', name: 'Glenn Phillips', over: '38.4' },
+        { score: '241/5', name: 'Michael Bracewell', over: '43.1' },
+      ],
+    },
+    {
+      match: 'SA vs PAK — Test, MCG', status: 'live',
+      team1: { name: 'SOUTH AFRICA', flag: '🇿🇦', score: '430/8', overs: '110.4' },
+      team2: { name: 'PAKISTAN', flag: '🇵🇰', score: '210/3', overs: '68.0' },
+      crr: '3.08', rrr: '—',
+      batting: [
+        { name: 'Imam-ul-Haq', runs: 74, balls: 142, fours: 7, sixes: 0, sr: 52.1, status: 'batting', how: 'not out' },
+        { name: 'Babar Azam', runs: 61, balls: 118, fours: 6, sixes: 0, sr: 51.7, status: 'batting', how: 'not out' },
+        { name: 'Abdullah Shafique', runs: 34, balls: 89, fours: 4, sixes: 0, sr: 38.2, status: 'out', how: 'c Bavuma b Rabada' },
+        { name: 'Shan Masood', runs: 28, balls: 67, fours: 3, sixes: 0, sr: 41.8, status: 'out', how: 'b Nortje' },
+      ],
+      bowling: [
+        { name: 'Kagiso Rabada', overs: '18.0', maiden: 3, runs: 52, wkts: 1, econ: 2.9 },
+        { name: 'Anrich Nortje', overs: '17.0', maiden: 2, runs: 48, wkts: 1, econ: 2.8 },
+        { name: 'Marco Jansen', overs: '15.0', maiden: 1, runs: 44, wkts: 1, econ: 2.9 },
+        { name: 'Keshav Maharaj', overs: '18.0', maiden: 4, runs: 41, wkts: 0, econ: 2.3 },
+      ],
+      ballByBall: [
+        { over: 66, balls: ['0', '1', '0', '1', '0', '4'] },
+        { over: 67, balls: ['0', '0', '1', '0', '0', '1'] },
+        { over: 68, balls: ['1', '0', '0', '2'] },
+      ],
+      fow: [
+        { score: '62/1', name: 'Shan Masood', over: '19.3' },
+        { score: '116/2', name: 'Abdullah Shafique', over: '39.1' },
+        { score: '134/3', name: 'Saud Shakeel', over: '44.2' },
       ],
     },
   ],
 
   players: [
-    { rank:1, name:'Virat Kohli',    country:'India',       runs:14873,avg:57.32,sr:93.4, hs:183,hundreds:50, wkts:4,  bavg:92.0,econ:5.1, color:'#e11d48',
-      role:'Batsman', dob:'Nov 5, 1988', debut:'Aug 18, 2008', tests:113,odis:292,t20s:125, formats:{test:{runs:9230,avg:49.95},odi:{runs:13906,avg:58.18},t20:{runs:4037,avg:52.43}}, recentScores:[122,0,44,183,76,31,89] },
-    { rank:2, name:'Rohit Sharma',   country:'India',       runs:10709,avg:48.61,sr:89.2, hs:264,hundreds:30, wkts:8,  bavg:42.0,econ:5.3, color:'#2563eb',
-      role:'Batsman', dob:'Apr 30, 1987', debut:'Jun 23, 2007', tests:62, odis:264,t20s:159, formats:{test:{runs:3877,avg:40.6},odi:{runs:10709,avg:48.6},t20:{runs:4231,avg:32.1}}, recentScores:[56,83,14,176,23,119,62] },
-    { rank:3, name:'Joe Root',       country:'England',     runs:12847,avg:51.73,sr:82.1, hs:254,hundreds:34, wkts:61, bavg:41.7,econ:3.4, color:'#16a34a',
-      role:'Batsman', dob:'Dec 30, 1990', debut:'Dec 13, 2012', tests:145,odis:163,t20s:32,  formats:{test:{runs:12847,avg:51.7},odi:{runs:6971,avg:49.1},t20:{runs:893,avg:25.5}}, recentScores:[84,153,31,228,7,91,111] },
-    { rank:4, name:'Steve Smith',    country:'Australia',   runs:9294, avg:61.80,sr:79.8, hs:239,hundreds:32, wkts:17, bavg:60.1,econ:3.1, color:'#d97706',
-      role:'Batsman', dob:'Jun 2, 1989',  debut:'Mar 1, 2010',  tests:106,odis:152,t20s:66,  formats:{test:{runs:9294,avg:61.8},odi:{runs:4162,avg:43.0},t20:{runs:1074,avg:22.4}}, recentScores:[101,36,239,18,55,88,131] },
-    { rank:5, name:'Babar Azam',     country:'Pakistan',    runs:9840, avg:56.12,sr:88.6, hs:158,hundreds:30, wkts:0,  bavg:0,   econ:0,   color:'#0891b2',
-      role:'Batsman', dob:'Oct 15, 1994', debut:'May 22, 2015', tests:57, odis:116,t20s:106, formats:{test:{runs:3613,avg:45.7},odi:{runs:5488,avg:58.6},t20:{runs:4223,avg:44.4}}, recentScores:[77,158,44,102,22,61,88] },
-    { rank:6, name:'Jasprit Bumrah', country:'India',       runs:280,  avg:6.2,  sr:72.0, hs:35, hundreds:0,  wkts:350,bavg:20.14,econ:4.32,color:'#e11d48',
-      role:'Bowler',  dob:'Dec 6, 1993',  debut:'Jan 23, 2016', tests:38, odis:86, t20s:72,  formats:{test:{wkts:159,avg:20.2},odi:{wkts:149,avg:24.3},t20:{wkts:79,avg:18.1}},  recentScores:[2,0,4,1,35,1,0] },
-    { rank:7, name:'Pat Cummins',    country:'Australia',   runs:1203, avg:15.4, sr:81.0, hs:66, hundreds:0,  wkts:287,bavg:21.60,econ:4.72,color:'#d97706',
-      role:'Bowler',  dob:'May 8, 1993',  debut:'Nov 3, 2011',  tests:52, odis:74, t20s:56,  formats:{test:{wkts:233,avg:20.8},odi:{wkts:96,avg:30.1},t20:{wkts:51,avg:24.5}},  recentScores:[6,31,14,2,66,4,12] },
-    { rank:8, name:'Kagiso Rabada',  country:'South Africa',runs:620,  avg:11.2, sr:88.0, hs:31, hundreds:0,  wkts:312,bavg:22.41,econ:4.98,color:'#059669',
-      role:'Bowler',  dob:'May 25, 1995', debut:'Jan 7, 2015',  tests:56, odis:90, t20s:77,  formats:{test:{wkts:261,avg:22.0},odi:{wkts:166,avg:26.7},t20:{wkts:112,avg:22.5}}, recentScores:[5,1,31,0,12,8,3] },
+    {
+      rank: 1, name: 'Virat Kohli', country: 'India', runs: 14873, avg: 57.32, sr: 93.4, hs: 183, hundreds: 50, wkts: 4, bavg: 92.0, econ: 5.1, color: '#e11d48',
+      role: 'Batsman', dob: 'Nov 5, 1988', debut: 'Aug 18, 2008', tests: 113, odis: 292, t20s: 125, formats: { test: { runs: 9230, avg: 49.95 }, odi: { runs: 13906, avg: 58.18 }, t20: { runs: 4037, avg: 52.43 } }, recentScores: [122, 0, 44, 183, 76, 31, 89]
+    },
+    {
+      rank: 2, name: 'Rohit Sharma', country: 'India', runs: 10709, avg: 48.61, sr: 89.2, hs: 264, hundreds: 30, wkts: 8, bavg: 42.0, econ: 5.3, color: '#2563eb',
+      role: 'Batsman', dob: 'Apr 30, 1987', debut: 'Jun 23, 2007', tests: 62, odis: 264, t20s: 159, formats: { test: { runs: 3877, avg: 40.6 }, odi: { runs: 10709, avg: 48.6 }, t20: { runs: 4231, avg: 32.1 } }, recentScores: [56, 83, 14, 176, 23, 119, 62]
+    },
+    {
+      rank: 3, name: 'Joe Root', country: 'England', runs: 12847, avg: 51.73, sr: 82.1, hs: 254, hundreds: 34, wkts: 61, bavg: 41.7, econ: 3.4, color: '#16a34a',
+      role: 'Batsman', dob: 'Dec 30, 1990', debut: 'Dec 13, 2012', tests: 145, odis: 163, t20s: 32, formats: { test: { runs: 12847, avg: 51.7 }, odi: { runs: 6971, avg: 49.1 }, t20: { runs: 893, avg: 25.5 } }, recentScores: [84, 153, 31, 228, 7, 91, 111]
+    },
+    {
+      rank: 4, name: 'Steve Smith', country: 'Australia', runs: 9294, avg: 61.80, sr: 79.8, hs: 239, hundreds: 32, wkts: 17, bavg: 60.1, econ: 3.1, color: '#d97706',
+      role: 'Batsman', dob: 'Jun 2, 1989', debut: 'Mar 1, 2010', tests: 106, odis: 152, t20s: 66, formats: { test: { runs: 9294, avg: 61.8 }, odi: { runs: 4162, avg: 43.0 }, t20: { runs: 1074, avg: 22.4 } }, recentScores: [101, 36, 239, 18, 55, 88, 131]
+    },
+    {
+      rank: 5, name: 'Babar Azam', country: 'Pakistan', runs: 9840, avg: 56.12, sr: 88.6, hs: 158, hundreds: 30, wkts: 0, bavg: 0, econ: 0, color: '#0891b2',
+      role: 'Batsman', dob: 'Oct 15, 1994', debut: 'May 22, 2015', tests: 57, odis: 116, t20s: 106, formats: { test: { runs: 3613, avg: 45.7 }, odi: { runs: 5488, avg: 58.6 }, t20: { runs: 4223, avg: 44.4 } }, recentScores: [77, 158, 44, 102, 22, 61, 88]
+    },
+    {
+      rank: 6, name: 'Jasprit Bumrah', country: 'India', runs: 280, avg: 6.2, sr: 72.0, hs: 35, hundreds: 0, wkts: 350, bavg: 20.14, econ: 4.32, color: '#e11d48',
+      role: 'Bowler', dob: 'Dec 6, 1993', debut: 'Jan 23, 2016', tests: 38, odis: 86, t20s: 72, formats: { test: { wkts: 159, avg: 20.2 }, odi: { wkts: 149, avg: 24.3 }, t20: { wkts: 79, avg: 18.1 } }, recentScores: [2, 0, 4, 1, 35, 1, 0]
+    },
+    {
+      rank: 7, name: 'Pat Cummins', country: 'Australia', runs: 1203, avg: 15.4, sr: 81.0, hs: 66, hundreds: 0, wkts: 287, bavg: 21.60, econ: 4.72, color: '#d97706',
+      role: 'Bowler', dob: 'May 8, 1993', debut: 'Nov 3, 2011', tests: 52, odis: 74, t20s: 56, formats: { test: { wkts: 233, avg: 20.8 }, odi: { wkts: 96, avg: 30.1 }, t20: { wkts: 51, avg: 24.5 } }, recentScores: [6, 31, 14, 2, 66, 4, 12]
+    },
+    {
+      rank: 8, name: 'Kagiso Rabada', country: 'South Africa', runs: 620, avg: 11.2, sr: 88.0, hs: 31, hundreds: 0, wkts: 312, bavg: 22.41, econ: 4.98, color: '#059669',
+      role: 'Bowler', dob: 'May 25, 1995', debut: 'Jan 7, 2015', tests: 56, odis: 90, t20s: 77, formats: { test: { wkts: 261, avg: 22.0 }, odi: { wkts: 166, avg: 26.7 }, t20: { wkts: 112, avg: 22.5 } }, recentScores: [5, 1, 31, 0, 12, 8, 3]
+    },
   ],
 
   iccRankings: {
     test: {
       batting: [
-        {rank:1,name:'Steve Smith',   country:'Australia',   rating:904,change:'+0'},
-        {rank:2,name:'Joe Root',      country:'England',     rating:891,change:'+1'},
-        {rank:3,name:'Marnus Labuschagne',country:'Australia',rating:878,change:'-1'},
-        {rank:4,name:'Kane Williamson',country:'New Zealand',rating:841,change:'+0'},
-        {rank:5,name:'Virat Kohli',   country:'India',       rating:815,change:'+2'},
-        {rank:6,name:'Babar Azam',    country:'Pakistan',    rating:802,change:'-1'},
-        {rank:7,name:'Ben Duckett',   country:'England',     rating:784,change:'+3'},
-        {rank:8,name:'Shubman Gill',  country:'India',       rating:762,change:'+1'},
+        { rank: 1, name: 'Steve Smith', country: 'Australia', rating: 904, change: '+0' },
+        { rank: 2, name: 'Joe Root', country: 'England', rating: 891, change: '+1' },
+        { rank: 3, name: 'Marnus Labuschagne', country: 'Australia', rating: 878, change: '-1' },
+        { rank: 4, name: 'Kane Williamson', country: 'New Zealand', rating: 841, change: '+0' },
+        { rank: 5, name: 'Virat Kohli', country: 'India', rating: 815, change: '+2' },
+        { rank: 6, name: 'Babar Azam', country: 'Pakistan', rating: 802, change: '-1' },
+        { rank: 7, name: 'Ben Duckett', country: 'England', rating: 784, change: '+3' },
+        { rank: 8, name: 'Shubman Gill', country: 'India', rating: 762, change: '+1' },
       ],
       bowling: [
-        {rank:1,name:'Jasprit Bumrah',country:'India',       rating:887,change:'+0'},
-        {rank:2,name:'Pat Cummins',   country:'Australia',   rating:871,change:'+1'},
-        {rank:3,name:'Kagiso Rabada', country:'South Africa',rating:843,change:'+0'},
-        {rank:4,name:'James Anderson',country:'England',     rating:820,change:'-1'},
-        {rank:5,name:'R. Ashwin',     country:'India',       rating:798,change:'+0'},
-        {rank:6,name:'Stuart Broad',  country:'England',     rating:765,change:'+2'},
-        {rank:7,name:'Nathan Lyon',   country:'Australia',   rating:741,change:'-1'},
-        {rank:8,name:'Shaheen Afridi',country:'Pakistan',    rating:718,change:'+1'},
+        { rank: 1, name: 'Jasprit Bumrah', country: 'India', rating: 887, change: '+0' },
+        { rank: 2, name: 'Pat Cummins', country: 'Australia', rating: 871, change: '+1' },
+        { rank: 3, name: 'Kagiso Rabada', country: 'South Africa', rating: 843, change: '+0' },
+        { rank: 4, name: 'James Anderson', country: 'England', rating: 820, change: '-1' },
+        { rank: 5, name: 'R. Ashwin', country: 'India', rating: 798, change: '+0' },
+        { rank: 6, name: 'Stuart Broad', country: 'England', rating: 765, change: '+2' },
+        { rank: 7, name: 'Nathan Lyon', country: 'Australia', rating: 741, change: '-1' },
+        { rank: 8, name: 'Shaheen Afridi', country: 'Pakistan', rating: 718, change: '+1' },
       ],
-      allrounder:[
-        {rank:1,name:'Ravindra Jadeja',country:'India',      rating:439,change:'+0'},
-        {rank:2,name:'Ben Stokes',     country:'England',    rating:412,change:'+1'},
-        {rank:3,name:'Cameron Green',  country:'Australia',  rating:388,change:'+0'},
-        {rank:4,name:'Shakib Al Hasan',country:'Bangladesh', rating:371,change:'-1'},
-        {rank:5,name:'Jason Holder',   country:'West Indies',rating:342,change:'+2'},
+      allrounder: [
+        { rank: 1, name: 'Ravindra Jadeja', country: 'India', rating: 439, change: '+0' },
+        { rank: 2, name: 'Ben Stokes', country: 'England', rating: 412, change: '+1' },
+        { rank: 3, name: 'Cameron Green', country: 'Australia', rating: 388, change: '+0' },
+        { rank: 4, name: 'Shakib Al Hasan', country: 'Bangladesh', rating: 371, change: '-1' },
+        { rank: 5, name: 'Jason Holder', country: 'West Indies', rating: 342, change: '+2' },
       ],
-      team:[
-        {rank:1,name:'Australia',   flag:'🇦🇺',rating:124,change:'+0'},
-        {rank:2,name:'India',       flag:'🇮🇳',rating:121,change:'+1'},
-        {rank:3,name:'England',     flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',rating:108,change:'-1'},
-        {rank:4,name:'New Zealand', flag:'🇳🇿',rating:101,change:'+0'},
-        {rank:5,name:'South Africa',flag:'🇿🇦',rating:96, change:'+0'},
-        {rank:6,name:'Pakistan',    flag:'🇵🇰',rating:88, change:'+1'},
+      team: [
+        { rank: 1, name: 'Australia', flag: '🇦🇺', rating: 124, change: '+0' },
+        { rank: 2, name: 'India', flag: '🇮🇳', rating: 121, change: '+1' },
+        { rank: 3, name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 108, change: '-1' },
+        { rank: 4, name: 'New Zealand', flag: '🇳🇿', rating: 101, change: '+0' },
+        { rank: 5, name: 'South Africa', flag: '🇿🇦', rating: 96, change: '+0' },
+        { rank: 6, name: 'Pakistan', flag: '🇵🇰', rating: 88, change: '+1' },
       ],
     },
     odi: {
       batting: [
-        {rank:1,name:'Virat Kohli',   country:'India',       rating:871,change:'+1'},
-        {rank:2,name:'Babar Azam',    country:'Pakistan',    rating:858,change:'-1'},
-        {rank:3,name:'Rohit Sharma',  country:'India',       rating:831,change:'+0'},
-        {rank:4,name:'Joe Root',      country:'England',     rating:812,change:'+2'},
-        {rank:5,name:'Shubman Gill',  country:'India',       rating:798,change:'+1'},
+        { rank: 1, name: 'Virat Kohli', country: 'India', rating: 871, change: '+1' },
+        { rank: 2, name: 'Babar Azam', country: 'Pakistan', rating: 858, change: '-1' },
+        { rank: 3, name: 'Rohit Sharma', country: 'India', rating: 831, change: '+0' },
+        { rank: 4, name: 'Joe Root', country: 'England', rating: 812, change: '+2' },
+        { rank: 5, name: 'Shubman Gill', country: 'India', rating: 798, change: '+1' },
       ],
-      bowling:[
-        {rank:1,name:'Jasprit Bumrah',country:'India',       rating:814,change:'+0'},
-        {rank:2,name:'Trent Boult',   country:'New Zealand', rating:786,change:'+1'},
-        {rank:3,name:'Shaheen Afridi',country:'Pakistan',    rating:761,change:'-1'},
-        {rank:4,name:'Mitchell Starc',country:'Australia',   rating:742,change:'+0'},
-        {rank:5,name:'Jofra Archer',  country:'England',     rating:718,change:'+2'},
+      bowling: [
+        { rank: 1, name: 'Jasprit Bumrah', country: 'India', rating: 814, change: '+0' },
+        { rank: 2, name: 'Trent Boult', country: 'New Zealand', rating: 786, change: '+1' },
+        { rank: 3, name: 'Shaheen Afridi', country: 'Pakistan', rating: 761, change: '-1' },
+        { rank: 4, name: 'Mitchell Starc', country: 'Australia', rating: 742, change: '+0' },
+        { rank: 5, name: 'Jofra Archer', country: 'England', rating: 718, change: '+2' },
       ],
-      allrounder:[
-        {rank:1,name:'Shakib Al Hasan',country:'Bangladesh', rating:392,change:'+0'},
-        {rank:2,name:'Hardik Pandya',  country:'India',      rating:374,change:'+1'},
-        {rank:3,name:'Mitchell Marsh', country:'Australia',  rating:341,change:'-1'},
+      allrounder: [
+        { rank: 1, name: 'Shakib Al Hasan', country: 'Bangladesh', rating: 392, change: '+0' },
+        { rank: 2, name: 'Hardik Pandya', country: 'India', rating: 374, change: '+1' },
+        { rank: 3, name: 'Mitchell Marsh', country: 'Australia', rating: 341, change: '-1' },
       ],
-      team:[
-        {rank:1,name:'India',       flag:'🇮🇳',rating:118,change:'+1'},
-        {rank:2,name:'Australia',   flag:'🇦🇺',rating:114,change:'-1'},
-        {rank:3,name:'England',     flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',rating:107,change:'+0'},
-        {rank:4,name:'Pakistan',    flag:'🇵🇰',rating:98, change:'+1'},
-        {rank:5,name:'New Zealand', flag:'🇳🇿',rating:95, change:'-1'},
+      team: [
+        { rank: 1, name: 'India', flag: '🇮🇳', rating: 118, change: '+1' },
+        { rank: 2, name: 'Australia', flag: '🇦🇺', rating: 114, change: '-1' },
+        { rank: 3, name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 107, change: '+0' },
+        { rank: 4, name: 'Pakistan', flag: '🇵🇰', rating: 98, change: '+1' },
+        { rank: 5, name: 'New Zealand', flag: '🇳🇿', rating: 95, change: '-1' },
       ],
     },
     t20: {
-      batting:[
-        {rank:1,name:'Suryakumar Yadav',country:'India',     rating:902,change:'+0'},
-        {rank:2,name:'Babar Azam',      country:'Pakistan',  rating:867,change:'+1'},
-        {rank:3,name:'Mohammad Rizwan', country:'Pakistan',  rating:843,change:'-1'},
-        {rank:4,name:'Travis Head',     country:'Australia', rating:811,change:'+2'},
-        {rank:5,name:'Virat Kohli',     country:'India',     rating:798,change:'+0'},
+      batting: [
+        { rank: 1, name: 'Suryakumar Yadav', country: 'India', rating: 902, change: '+0' },
+        { rank: 2, name: 'Babar Azam', country: 'Pakistan', rating: 867, change: '+1' },
+        { rank: 3, name: 'Mohammad Rizwan', country: 'Pakistan', rating: 843, change: '-1' },
+        { rank: 4, name: 'Travis Head', country: 'Australia', rating: 811, change: '+2' },
+        { rank: 5, name: 'Virat Kohli', country: 'India', rating: 798, change: '+0' },
       ],
-      bowling:[
-        {rank:1,name:'Jasprit Bumrah',  country:'India',     rating:844,change:'+0'},
-        {rank:2,name:'Rashid Khan',     country:'Afghanistan',rating:821,change:'+0'},
-        {rank:3,name:'Adil Rashid',     country:'England',   rating:798,change:'+1'},
-        {rank:4,name:'Wanindu Hasaranga',country:'Sri Lanka',rating:774,change:'-1'},
-        {rank:5,name:'Shaheen Afridi',  country:'Pakistan',  rating:741,change:'+1'},
+      bowling: [
+        { rank: 1, name: 'Jasprit Bumrah', country: 'India', rating: 844, change: '+0' },
+        { rank: 2, name: 'Rashid Khan', country: 'Afghanistan', rating: 821, change: '+0' },
+        { rank: 3, name: 'Adil Rashid', country: 'England', rating: 798, change: '+1' },
+        { rank: 4, name: 'Wanindu Hasaranga', country: 'Sri Lanka', rating: 774, change: '-1' },
+        { rank: 5, name: 'Shaheen Afridi', country: 'Pakistan', rating: 741, change: '+1' },
       ],
-      allrounder:[
-        {rank:1,name:'Hardik Pandya',   country:'India',     rating:411,change:'+0'},
-        {rank:2,name:'Shakib Al Hasan', country:'Bangladesh',rating:378,change:'+1'},
-        {rank:3,name:'Liam Livingstone',country:'England',   rating:352,change:'-1'},
+      allrounder: [
+        { rank: 1, name: 'Hardik Pandya', country: 'India', rating: 411, change: '+0' },
+        { rank: 2, name: 'Shakib Al Hasan', country: 'Bangladesh', rating: 378, change: '+1' },
+        { rank: 3, name: 'Liam Livingstone', country: 'England', rating: 352, change: '-1' },
       ],
-      team:[
-        {rank:1,name:'India',       flag:'🇮🇳',rating:272,change:'+0'},
-        {rank:2,name:'England',     flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',rating:268,change:'+1'},
-        {rank:3,name:'Australia',   flag:'🇦🇺',rating:261,change:'-1'},
-        {rank:4,name:'Pakistan',    flag:'🇵🇰',rating:254,change:'+0'},
-        {rank:5,name:'South Africa',flag:'🇿🇦',rating:241,change:'+2'},
+      team: [
+        { rank: 1, name: 'India', flag: '🇮🇳', rating: 272, change: '+0' },
+        { rank: 2, name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 268, change: '+1' },
+        { rank: 3, name: 'Australia', flag: '🇦🇺', rating: 261, change: '-1' },
+        { rank: 4, name: 'Pakistan', flag: '🇵🇰', rating: 254, change: '+0' },
+        { rank: 5, name: 'South Africa', flag: '🇿🇦', rating: 241, change: '+2' },
       ],
     },
   },
@@ -230,25 +245,25 @@ const MOCK = {
     'ICC World Cup 2025': {
       rounds: [
         {
-          name:'Group Stage',
-          matches:[
-            {t1:'IND',f1:'🇮🇳',s1:'204/4',t2:'PAK',f2:'🇵🇰',s2:'173/9',winner:'IND',status:'completed'},
-            {t1:'AUS',f1:'🇦🇺',s1:'287/6',t2:'ENG',f2:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',s2:'241/8',winner:'AUS',status:'completed'},
-            {t1:'NZ', f1:'🇳🇿',s1:'289/7',t2:'SA', f2:'🇿🇦',s2:'271/9',winner:'NZ', status:'completed'},
-            {t1:'SL', f1:'🇱🇰',s1:'201/8',t2:'WI', f2:'🏝️',s2:'198/7',winner:'SL', status:'completed'},
+          name: 'Group Stage',
+          matches: [
+            { t1: 'IND', f1: '🇮🇳', s1: '204/4', t2: 'PAK', f2: '🇵🇰', s2: '173/9', winner: 'IND', status: 'completed' },
+            { t1: 'AUS', f1: '🇦🇺', s1: '287/6', t2: 'ENG', f2: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', s2: '241/8', winner: 'AUS', status: 'completed' },
+            { t1: 'NZ', f1: '🇳🇿', s1: '289/7', t2: 'SA', f2: '🇿🇦', s2: '271/9', winner: 'NZ', status: 'completed' },
+            { t1: 'SL', f1: '🇱🇰', s1: '201/8', t2: 'WI', f2: '🏝️', s2: '198/7', winner: 'SL', status: 'completed' },
           ]
         },
         {
-          name:'Semi-Finals',
-          matches:[
-            {t1:'IND',f1:'🇮🇳',s1:'220/3',t2:'AUS',f2:'🇦🇺',s2:'198/8',winner:'IND',status:'completed'},
-            {t1:'NZ', f1:'🇳🇿',s1:'',     t2:'ENG',f2:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',s2:'',     winner:'',   status:'live'},
+          name: 'Semi-Finals',
+          matches: [
+            { t1: 'IND', f1: '🇮🇳', s1: '220/3', t2: 'AUS', f2: '🇦🇺', s2: '198/8', winner: 'IND', status: 'completed' },
+            { t1: 'NZ', f1: '🇳🇿', s1: '', t2: 'ENG', f2: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', s2: '', winner: '', status: 'live' },
           ]
         },
         {
-          name:'Final',
-          matches:[
-            {t1:'IND',f1:'🇮🇳',s1:'',t2:'TBD',f2:'🏆',s2:'',winner:'',status:'upcoming'},
+          name: 'Final',
+          matches: [
+            { t1: 'IND', f1: '🇮🇳', s1: '', t2: 'TBD', f2: '🏆', s2: '', winner: '', status: 'upcoming' },
           ]
         },
       ]
@@ -256,27 +271,27 @@ const MOCK = {
   },
 
   standings: [
-    {pos:1,team:'India',      flag:'🇮🇳',p:9,w:7,l:1,nr:1,nrr:'+1.432',pts:15},
-    {pos:2,team:'Australia',  flag:'🇦🇺',p:9,w:6,l:2,nr:1,nrr:'+0.871',pts:13},
-    {pos:3,team:'England',    flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',p:9,w:6,l:3,nr:0,nrr:'+0.541',pts:12},
-    {pos:4,team:'New Zealand',flag:'🇳🇿',p:9,w:5,l:3,nr:1,nrr:'+0.218',pts:11},
-    {pos:5,team:'Pakistan',   flag:'🇵🇰',p:9,w:5,l:4,nr:0,nrr:'-0.102',pts:10},
-    {pos:6,team:'South Africa',flag:'🇿🇦',p:9,w:4,l:4,nr:1,nrr:'+0.091',pts:9},
-    {pos:7,team:'Sri Lanka',  flag:'🇱🇰',p:9,w:3,l:5,nr:1,nrr:'-0.307',pts:7},
-    {pos:8,team:'West Indies',flag:'🏝️',p:9,w:2,l:6,nr:1,nrr:'-0.812',pts:5},
-    {pos:9,team:'Bangladesh', flag:'🇧🇩',p:9,w:1,l:7,nr:1,nrr:'-0.944',pts:3},
-    {pos:10,team:'Afghanistan',flag:'🇦🇫',p:9,w:1,l:8,nr:0,nrr:'-1.232',pts:2},
+    { pos: 1, team: 'India', flag: '🇮🇳', p: 9, w: 7, l: 1, nr: 1, nrr: '+1.432', pts: 15 },
+    { pos: 2, team: 'Australia', flag: '🇦🇺', p: 9, w: 6, l: 2, nr: 1, nrr: '+0.871', pts: 13 },
+    { pos: 3, team: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', p: 9, w: 6, l: 3, nr: 0, nrr: '+0.541', pts: 12 },
+    { pos: 4, team: 'New Zealand', flag: '🇳🇿', p: 9, w: 5, l: 3, nr: 1, nrr: '+0.218', pts: 11 },
+    { pos: 5, team: 'Pakistan', flag: '🇵🇰', p: 9, w: 5, l: 4, nr: 0, nrr: '-0.102', pts: 10 },
+    { pos: 6, team: 'South Africa', flag: '🇿🇦', p: 9, w: 4, l: 4, nr: 1, nrr: '+0.091', pts: 9 },
+    { pos: 7, team: 'Sri Lanka', flag: '🇱🇰', p: 9, w: 3, l: 5, nr: 1, nrr: '-0.307', pts: 7 },
+    { pos: 8, team: 'West Indies', flag: '🏝️', p: 9, w: 2, l: 6, nr: 1, nrr: '-0.812', pts: 5 },
+    { pos: 9, team: 'Bangladesh', flag: '🇧🇩', p: 9, w: 1, l: 7, nr: 1, nrr: '-0.944', pts: 3 },
+    { pos: 10, team: 'Afghanistan', flag: '🇦🇫', p: 9, w: 1, l: 8, nr: 0, nrr: '-1.232', pts: 2 },
   ],
 
   matchHistory: [
-    {id:1,team1:'India',      team2:'Australia',  format:'t20', date:'24 Mar 2025',venue:'Wankhede, Mumbai',    result:'India won by 24 runs',     winner:'IND',score1:'204/4',score2:'180/7'},
-    {id:2,team1:'England',    team2:'Pakistan',   format:'odi', date:'22 Mar 2025',venue:"Lord's, London",      result:'England won by 3 wkts',    winner:'ENG',score1:'278/9',score2:'281/7'},
-    {id:3,team1:'Australia',  team2:'South Africa',format:'test',date:'18 Mar 2025',venue:'MCG, Melbourne',    result:'Australia won by innings',  winner:'AUS',score1:'540/8d',score2:'210 & 302'},
-    {id:4,team1:'New Zealand',team2:'Sri Lanka',  format:'odi', date:'15 Mar 2025',venue:'Eden Park, Auckland',result:'NZ won by 67 runs',        winner:'NZ', score1:'330/6',score2:'263/10'},
-    {id:5,team1:'India',      team2:'England',    format:'t20', date:'12 Mar 2025',venue:'Edgbaston, Birmingham',result:'England won by 5 runs',   winner:'ENG',score1:'189/6',score2:'194/5'},
-    {id:6,team1:'Pakistan',   team2:'West Indies',format:'test',date:'8 Mar 2025', venue:'National Stadium, Karachi',result:'Pakistan won by 9 wkts',winner:'PAK',score1:'310 & 52/1',score2:'198 & 163'},
-    {id:7,team1:'South Africa',team2:'Bangladesh',format:'odi', date:'5 Mar 2025', venue:'Newlands, Cape Town', result:'SA won by 120 runs',      winner:'SA', score1:'358/5',score2:'238/10'},
-    {id:8,team1:'Australia',  team2:'India',      format:'t20', date:'2 Mar 2025', venue:'SCG, Sydney',         result:'India won by 7 wickets',  winner:'IND',score1:'152/9',score2:'155/3'},
+    { id: 1, team1: 'India', team2: 'Australia', format: 't20', date: '24 Mar 2025', venue: 'Wankhede, Mumbai', result: 'India won by 24 runs', winner: 'IND', score1: '204/4', score2: '180/7' },
+    { id: 2, team1: 'England', team2: 'Pakistan', format: 'odi', date: '22 Mar 2025', venue: "Lord's, London", result: 'England won by 3 wkts', winner: 'ENG', score1: '278/9', score2: '281/7' },
+    { id: 3, team1: 'Australia', team2: 'South Africa', format: 'test', date: '18 Mar 2025', venue: 'MCG, Melbourne', result: 'Australia won by innings', winner: 'AUS', score1: '540/8d', score2: '210 & 302' },
+    { id: 4, team1: 'New Zealand', team2: 'Sri Lanka', format: 'odi', date: '15 Mar 2025', venue: 'Eden Park, Auckland', result: 'NZ won by 67 runs', winner: 'NZ', score1: '330/6', score2: '263/10' },
+    { id: 5, team1: 'India', team2: 'England', format: 't20', date: '12 Mar 2025', venue: 'Edgbaston, Birmingham', result: 'England won by 5 runs', winner: 'ENG', score1: '189/6', score2: '194/5' },
+    { id: 6, team1: 'Pakistan', team2: 'West Indies', format: 'test', date: '8 Mar 2025', venue: 'National Stadium, Karachi', result: 'Pakistan won by 9 wkts', winner: 'PAK', score1: '310 & 52/1', score2: '198 & 163' },
+    { id: 7, team1: 'South Africa', team2: 'Bangladesh', format: 'odi', date: '5 Mar 2025', venue: 'Newlands, Cape Town', result: 'SA won by 120 runs', winner: 'SA', score1: '358/5', score2: '238/10' },
+    { id: 8, team1: 'Australia', team2: 'India', format: 't20', date: '2 Mar 2025', venue: 'SCG, Sydney', result: 'India won by 7 wickets', winner: 'IND', score1: '152/9', score2: '155/3' },
   ],
 };
 
@@ -292,26 +307,26 @@ async function fetchAPI(endpoint, mockKey) {
     if (json && json.matches !== undefined) return json.matches;
     // MongoDB routes return plain arrays
     return json;
-  } catch(e) {
+  } catch (e) {
     console.warn(`[CricPulse] API ${endpoint} failed (${e.message}), using mock data`);
     return MOCK[mockKey];
   }
 }
 
-function getRankClass(r) { return r===1?'gold':r===2?'silver':r===3?'bronze':''; }
-function getRankEmoji(r) { return r===1?'🥇':r===2?'🥈':r===3?'🥉':r; }
+function getRankClass(r) { return r === 1 ? 'gold' : r === 2 ? 'silver' : r === 3 ? 'bronze' : ''; }
+function getRankEmoji(r) { return r === 1 ? '🥇' : r === 2 ? '🥈' : r === 3 ? '🥉' : r; }
 
 // ── Navigation ─────────────────────────────────────────────────────────────
 
 const sectionMeta = {
-  live:      { title:'Live Scores',     subtitle:'Real-time match updates' },
-  scorecard: { title:'Scorecard',       subtitle:'Ball-by-ball match details' },
-  players:   { title:'Player Stats',    subtitle:'Batting & bowling rankings' },
-  profile:   { title:'Player Profile',  subtitle:'Detailed player career stats' },
-  icc:       { title:'ICC Rankings',    subtitle:'Official world rankings' },
-  bracket:   { title:'Tournament',      subtitle:'Bracket & match results' },
-  standings: { title:'Team Standings',  subtitle:'Tournament points table' },
-  history:   { title:'Match History',   subtitle:'Past results & scorecards' },
+  live: { title: 'Live Scores', subtitle: 'Real-time match updates' },
+  scorecard: { title: 'Scorecard', subtitle: 'Ball-by-ball match details' },
+  players: { title: 'Player Stats', subtitle: 'Batting & bowling rankings' },
+  profile: { title: 'Player Profile', subtitle: 'Detailed player career stats' },
+  icc: { title: 'ICC Rankings', subtitle: 'Official world rankings' },
+  bracket: { title: 'Tournament', subtitle: 'Bracket & match results' },
+  standings: { title: 'Team Standings', subtitle: 'Tournament points table' },
+  history: { title: 'Match History', subtitle: 'Past results & scorecards' },
 };
 
 document.querySelectorAll('.nav-item').forEach(item => {
@@ -348,14 +363,14 @@ async function renderMatches() {
       const json = await res.json();
       data = json.matches || [];
     }
-  } catch(e) { console.warn('Cricbuzz live failed, falling back:', e.message); }
+  } catch (e) { console.warn('Cricbuzz live failed, falling back:', e.message); }
 
   // Fallback to MongoDB live matches
   if (!data.length) {
     try {
       const res = await fetch(`${API_BASE}/matches/live`, { signal: AbortSignal.timeout(3000) });
       if (res.ok) data = await res.json();
-    } catch(e) { console.warn('MongoDB live failed, using mock:', e.message); }
+    } catch (e) { console.warn('MongoDB live failed, using mock:', e.message); }
   }
 
   // Last resort: mock data
@@ -364,7 +379,7 @@ async function renderMatches() {
   // Normalise: Cricbuzz uses seriesName+format, MongoDB uses type+status
   grid.innerHTML = data.length ? data.map(m => {
     const statusLabel = (m.status || 'live').toLowerCase();
-    const isLive = statusLabel === 'live' || (m.status && !['upcoming','completed'].includes(statusLabel));
+    const isLive = statusLabel === 'live' || (m.status && !['upcoming', 'completed'].includes(statusLabel));
     const type = m.seriesName || m.type || 'Cricket';
     const flag1 = m.team1.flag || '🏏';
     const flag2 = m.team2.flag || '🏏';
@@ -373,17 +388,13 @@ async function renderMatches() {
     const overs1 = m.team1.overs || '';
     const overs2 = m.team2.overs || '';
     const crr = m.crr || m.startTime || '';
-    // Use Cricbuzz matchId if real API, or id from mock/MongoDB — both work
-    const cardMatchId = m.matchId || m.id || m._id || null;
-    const clickAttr = cardMatchId
-      ? `onclick="openScorecardModal('${cardMatchId}', '${m.team1.name}', '${m.team2.name}', '${score1}', '${overs1}', '${score2}', '${overs2}', '${crr}', '${(m.venue || 'TBD').replace(/'/g,"\\'")}', ${isLive})"`
-      : '';
+    const clickAttr = m.matchId ? `onclick="openScorecardModal('${m.matchId}', '${m.team1.name}', '${m.team2.name}', '${score1}', '${overs1}', '${score2}', '${overs2}', '${crr}', '${m.venue || 'TBD'}', ${isLive})"` : '';
     return `
-    <div class="match-card ${isLive ? 'live-card' : ''}" ${clickAttr} style="${cardMatchId ? 'cursor:pointer' : ''}">
+    <div class="match-card ${isLive ? 'live-card' : ''}" ${clickAttr} style="${m.matchId ? 'cursor:pointer' : ''}">
       <div class="match-meta">
         <span class="match-type">${type}</span>
         <span class="match-status ${isLive ? 'live' : statusLabel}">${isLive ? 'LIVE' : statusLabel.toUpperCase()}</span>
-        ${cardMatchId ? `<span style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-left:auto"><i class="fas fa-arrow-up-right-from-square"></i> SCORECARD</span>` : ''}
+        ${m.matchId ? `<span style="font-family:var(--font-mono);font-size:9px;color:var(--text3);margin-left:auto"><i class="fas fa-arrow-up-right-from-square"></i> SCORECARD</span>` : ''}
       </div>
       <div class="teams">
         <div class="team-row">
@@ -402,7 +413,7 @@ async function renderMatches() {
       </div>
     </div>`;
   }).join('')
-  : '<div style="padding:40px;text-align:center;color:var(--text3)">No live matches right now. Check back soon!</div>';
+    : '<div style="padding:40px;text-align:center;color:var(--text3)">No live matches right now. Check back soon!</div>';
 }
 
 // ── Scorecard ──────────────────────────────────────────────────────────────
@@ -412,11 +423,11 @@ function renderScorecard(idx) {
   const el = document.getElementById('scorecardContent');
 
   const battingRows = sc.batting.map(b => `
-    <tr class="${b.status==='batting'?'batting-current':''} ${b.status==='out'?'out-row':''}">
+    <tr class="${b.status === 'batting' ? 'batting-current' : ''} ${b.status === 'out' ? 'out-row' : ''}">
       <td>
         <div style="display:flex;flex-direction:column">
-          <span style="font-weight:500">${b.name} ${b.status==='batting'?'<span style="color:var(--accent);font-size:10px">★ batting</span>':''}</span>
-          <span style="font-size:11px;color:var(--text3)">${b.status==='out'?b.how:b.how}</span>
+          <span style="font-weight:500">${b.name} ${b.status === 'batting' ? '<span style="color:var(--accent);font-size:10px">★ batting</span>' : ''}</span>
+          <span style="font-size:11px;color:var(--text3)">${b.status === 'out' ? b.how : b.how}</span>
         </div>
       </td>
       <td class="highlight">${b.runs}</td>
@@ -442,15 +453,15 @@ function renderScorecard(idx) {
     <div class="over-block">
       <span class="over-label">Ov ${over.over}</span>
       ${over.balls.map(ball => {
-        let cls = 'run';
-        if (ball==='W') cls='wicket';
-        else if (ball==='6') cls='six';
-        else if (ball==='4') cls='four';
-        else if (ball==='0') cls='dot';
-        else if (ball==='WD') cls='wide';
-        else if (ball==='NB') cls='nb';
-        return `<div class="ball ${cls}">${ball}</div>`;
-      }).join('')}
+    let cls = 'run';
+    if (ball === 'W') cls = 'wicket';
+    else if (ball === '6') cls = 'six';
+    else if (ball === '4') cls = 'four';
+    else if (ball === '0') cls = 'dot';
+    else if (ball === 'WD') cls = 'wide';
+    else if (ball === 'NB') cls = 'nb';
+    return `<div class="ball ${cls}">${ball}</div>`;
+  }).join('')}
     </div>
   `).join('');
 
@@ -472,7 +483,7 @@ function renderScorecard(idx) {
       <div class="sc-vs">
         <span class="live-badge"><span class="pulse-dot"></span> LIVE</span>
         <div class="sc-crr">CRR: ${sc.crr}</div>
-        ${sc.rrr!=='—'?`<div class="sc-rrr">RRR: ${sc.rrr}</div>`:''}
+        ${sc.rrr !== '—' ? `<div class="sc-rrr">RRR: ${sc.rrr}</div>` : ''}
       </div>
       <div class="sc-team right">
         <span class="sc-flag">${sc.team2.flag}</span>
@@ -513,7 +524,7 @@ document.getElementById('scorecardMatchSelect').addEventListener('change', funct
 
 function renderPlayerStats(type) {
   const data = MOCK.players;
-  const maxVal = Math.max(...data.map(p => type==='batting' ? p.runs : p.wkts));
+  const maxVal = Math.max(...data.map(p => type === 'batting' ? p.runs : p.wkts));
   const head = document.getElementById('playerTableHead');
   const body = document.getElementById('playerTableBody');
 
@@ -522,28 +533,28 @@ function renderPlayerStats(type) {
     body.innerHTML = data.map(p => `
       <tr>
         <td><span class="rank-badge ${getRankClass(p.rank)}">${getRankEmoji(p.rank)}</span></td>
-        <td><div class="player-cell"><div class="player-avatar" style="background:${p.color}">${p.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div><div class="player-name">${p.name}</div><div class="player-country">${p.country}</div></div></div></td>
+        <td><div class="player-cell"><div class="player-avatar" style="background:${p.color}">${p.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</div><div><div class="player-name">${p.name}</div><div class="player-country">${p.country}</div></div></div></td>
         <td class="highlight">${p.runs.toLocaleString()}</td>
         <td>${p.avg}</td><td>${p.sr}</td><td>${p.hs}</td><td>${p.hundreds}</td>
-        <td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:${(p.runs/maxVal*100).toFixed(1)}%"></div></div></div></td>
+        <td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:${(p.runs / maxVal * 100).toFixed(1)}%"></div></div></div></td>
       </tr>`).join('');
   } else {
-    const bowlers = data.filter(p=>p.wkts>0);
-    const maxW = Math.max(...bowlers.map(p=>p.wkts));
+    const bowlers = data.filter(p => p.wkts > 0);
+    const maxW = Math.max(...bowlers.map(p => p.wkts));
     head.innerHTML = `<tr><th>#</th><th>Player</th><th>Wkts</th><th>Avg</th><th>Econ</th><th>Form</th></tr>`;
-    body.innerHTML = bowlers.map((p,i) => `
+    body.innerHTML = bowlers.map((p, i) => `
       <tr>
-        <td><span class="rank-badge ${getRankClass(i+1)}">${getRankEmoji(i+1)}</span></td>
-        <td><div class="player-cell"><div class="player-avatar" style="background:${p.color}">${p.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div><div class="player-name">${p.name}</div><div class="player-country">${p.country}</div></div></div></td>
+        <td><span class="rank-badge ${getRankClass(i + 1)}">${getRankEmoji(i + 1)}</span></td>
+        <td><div class="player-cell"><div class="player-avatar" style="background:${p.color}">${p.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</div><div><div class="player-name">${p.name}</div><div class="player-country">${p.country}</div></div></div></td>
         <td class="highlight">${p.wkts}</td><td>${p.bavg}</td><td>${p.econ}</td>
-        <td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:${(p.wkts/maxW*100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),var(--purple))"></div></div></div></td>
+        <td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:${(p.wkts / maxW * 100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),var(--purple))"></div></div></div></td>
       </tr>`).join('');
   }
 }
 
 document.querySelectorAll('.stat-tab[data-type]').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.stat-tab[data-type]').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.stat-tab[data-type]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderPlayerStats(btn.dataset.type);
   });
@@ -552,8 +563,8 @@ document.querySelectorAll('.stat-tab[data-type]').forEach(btn => {
 // ── Player Profile ─────────────────────────────────────────────────────────
 
 const profileInput = document.getElementById('profileSearchInput');
-const profileSugg  = document.getElementById('profileSuggestions');
-const profileCard  = document.getElementById('profileCard');
+const profileSugg = document.getElementById('profileSuggestions');
+const profileCard = document.getElementById('profileCard');
 
 profileInput.addEventListener('input', function () {
   const q = this.value.toLowerCase().trim();
@@ -562,7 +573,7 @@ profileInput.addEventListener('input', function () {
   if (!matches.length) { profileSugg.classList.remove('open'); return; }
   profileSugg.innerHTML = matches.map(p => `
     <div class="suggestion-item" data-idx="${MOCK.players.indexOf(p)}">
-      <div class="player-avatar" style="background:${p.color};width:26px;height:26px;font-size:10px">${p.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+      <div class="player-avatar" style="background:${p.color};width:26px;height:26px;font-size:10px">${p.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</div>
       <div><div style="font-weight:500">${p.name}</div><div style="font-size:11px;color:var(--text3)">${p.country} · ${p.role}</div></div>
     </div>`).join('');
   profileSugg.classList.add('open');
@@ -582,7 +593,7 @@ document.addEventListener('click', e => {
 });
 
 function renderProfile(p) {
-  const initials = p.name.split(' ').map(n=>n[0]).join('').slice(0,2);
+  const initials = p.name.split(' ').map(n => n[0]).join('').slice(0, 2);
   const isBowler = p.role === 'Bowler';
   const maxScore = Math.max(...p.recentScores);
 
@@ -590,7 +601,7 @@ function renderProfile(p) {
     <div class="profile-stat-box"><div class="psb-label">Wickets</div><div class="psb-val">${p.wkts}</div><div class="psb-sub">Career total</div></div>
     <div class="profile-stat-box"><div class="psb-label">Avg</div><div class="psb-val">${p.bavg}</div><div class="psb-sub">Bowling avg</div></div>
     <div class="profile-stat-box"><div class="psb-label">Economy</div><div class="psb-val">${p.econ}</div><div class="psb-sub">Runs per over</div></div>
-    <div class="profile-stat-box"><div class="psb-label">5-Wickets</div><div class="psb-val">${MOCK.players.find(x=>x.name===p.name)?.rank||0}</div><div class="psb-sub">Fifers</div></div>
+    <div class="profile-stat-box"><div class="psb-label">5-Wickets</div><div class="psb-val">${MOCK.players.find(x => x.name === p.name)?.rank || 0}</div><div class="psb-sub">Fifers</div></div>
     <div class="profile-stat-box"><div class="psb-label">Tests</div><div class="psb-val">${p.tests}</div><div class="psb-sub">Matches</div></div>
     <div class="profile-stat-box"><div class="psb-label">ODIs</div><div class="psb-val">${p.odis}</div><div class="psb-sub">Matches</div></div>
   ` : `
@@ -602,14 +613,14 @@ function renderProfile(p) {
     <div class="profile-stat-box"><div class="psb-label">Tests</div><div class="psb-val">${p.tests}</div><div class="psb-sub">Matches</div></div>
   `;
 
-  const formatRows = p.formats ? Object.entries(p.formats).map(([fmt,stats])=>`
+  const formatRows = p.formats ? Object.entries(p.formats).map(([fmt, stats]) => `
     <div class="format-row">
       <span class="format-label">${fmt.toUpperCase()}</span>
       <span style="font-family:var(--font-mono);font-size:13px">${Object.values(stats).join(' / ')}</span>
     </div>`).join('') : '';
 
-  const chartBars = p.recentScores.map(s=>`
-    <div class="mc-bar" style="height:${(s/maxScore*100).toFixed(0)}%;background:${s===maxScore?'var(--accent)':'rgba(0,229,160,0.4)'}" title="${s}"></div>
+  const chartBars = p.recentScores.map(s => `
+    <div class="mc-bar" style="height:${(s / maxScore * 100).toFixed(0)}%;background:${s === maxScore ? 'var(--accent)' : 'rgba(0,229,160,0.4)'}" title="${s}"></div>
   `).join('');
 
   profileCard.innerHTML = `
@@ -658,18 +669,18 @@ function renderICC() {
     ? `<tr><th>#</th><th>Team</th><th>Rating</th><th>Change</th></tr>`
     : `<tr><th>#</th><th>Player</th><th>Country</th><th>Rating</th><th>Change</th></tr>`;
 
-  body.innerHTML = data.map((r,i) => {
-    const rowClass = i===0?'icc-rank-1':i===1?'icc-rank-2':i===2?'icc-rank-3':'';
+  body.innerHTML = data.map((r, i) => {
+    const rowClass = i === 0 ? 'icc-rank-1' : i === 1 ? 'icc-rank-2' : i === 2 ? 'icc-rank-3' : '';
     const chg = r.change;
-    const chgClass = chg.startsWith('+')?'change-up':chg==='+0'||chg==='0'?'change-same':'change-down';
-    const chgIcon = chg.startsWith('+')?'▲':chg==='+0'||chg==='0'?'—':'▼';
-    const chgText = `<span class="${chgClass}">${chgIcon} ${chg.replace(/[+-]/,'')}</span>`;
+    const chgClass = chg.startsWith('+') ? 'change-up' : chg === '+0' || chg === '0' ? 'change-same' : 'change-down';
+    const chgIcon = chg.startsWith('+') ? '▲' : chg === '+0' || chg === '0' ? '—' : '▼';
+    const chgText = `<span class="${chgClass}">${chgIcon} ${chg.replace(/[+-]/, '')}</span>`;
 
     if (isTeam) return `
       <tr class="${rowClass}">
         <td><span class="rank-badge ${getRankClass(r.rank)}">${getRankEmoji(r.rank)}</span></td>
         <td><div class="player-cell"><span style="font-size:20px">${r.flag}</span><span style="font-weight:500">${r.name}</span></div></td>
-        <td><div class="rating-bar"><span class="rating-num">${r.rating}</span><div class="mini-bar" style="width:80px"><div class="mini-bar-fill" style="width:${(r.rating/300*100).toFixed(0)}%"></div></div></div></td>
+        <td><div class="rating-bar"><span class="rating-num">${r.rating}</span><div class="mini-bar" style="width:80px"><div class="mini-bar-fill" style="width:${(r.rating / 300 * 100).toFixed(0)}%"></div></div></div></td>
         <td>${chgText}</td>
       </tr>`;
 
@@ -678,7 +689,7 @@ function renderICC() {
         <td><span class="rank-badge ${getRankClass(r.rank)}">${getRankEmoji(r.rank)}</span></td>
         <td><div style="font-weight:500">${r.name}</div></td>
         <td><div style="font-size:12px;color:var(--text3)">${r.country}</div></td>
-        <td><div class="rating-bar"><span class="rating-num">${r.rating}</span><div class="mini-bar" style="width:80px"><div class="mini-bar-fill" style="width:${(r.rating/1000*100).toFixed(0)}%"></div></div></div></td>
+        <td><div class="rating-bar"><span class="rating-num">${r.rating}</span><div class="mini-bar" style="width:80px"><div class="mini-bar-fill" style="width:${(r.rating / 1000 * 100).toFixed(0)}%"></div></div></div></td>
         <td>${chgText}</td>
       </tr>`;
   }).join('') || `<tr><td colspan="5" style="padding:30px;text-align:center;color:var(--text3)">No data available</td></tr>`;
@@ -686,7 +697,7 @@ function renderICC() {
 
 document.querySelectorAll('.icc-tabs .stat-tab').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.icc-tabs .stat-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.icc-tabs .stat-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     iccFormat = btn.dataset.format;
     renderICC();
@@ -694,7 +705,7 @@ document.querySelectorAll('.icc-tabs .stat-tab').forEach(btn => {
 });
 document.querySelectorAll('.icc-subtabs .filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.icc-subtabs .filter-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.icc-subtabs .filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     iccRole = btn.dataset.role;
     renderICC();
@@ -709,18 +720,18 @@ function renderBracket(name) {
 
   const rounds = data.rounds.map(round => {
     const matches = round.matches.map(m => {
-      const bm = m.status==='live'?'bm-live':'';
-      const t1cls = m.winner===m.t1?'winner':m.winner&&m.winner!==m.t1?'loser':m.t1==='TBD'?'tbd':'';
-      const t2cls = m.winner===m.t2?'winner':m.winner&&m.winner!==m.t2?'loser':m.t2==='TBD'?'tbd':'';
+      const bm = m.status === 'live' ? 'bm-live' : '';
+      const t1cls = m.winner === m.t1 ? 'winner' : m.winner && m.winner !== m.t1 ? 'loser' : m.t1 === 'TBD' ? 'tbd' : '';
+      const t2cls = m.winner === m.t2 ? 'winner' : m.winner && m.winner !== m.t2 ? 'loser' : m.t2 === 'TBD' ? 'tbd' : '';
       return `
         <div class="bracket-match ${bm}">
           <div class="bracket-team ${t1cls}">
             <span class="bt-name">${m.f1} ${m.t1}</span>
-            <span class="bt-score">${m.s1||'—'}</span>
+            <span class="bt-score">${m.s1 || '—'}</span>
           </div>
           <div class="bracket-team ${t2cls}">
             <span class="bt-name">${m.f2} ${m.t2}</span>
-            <span class="bt-score">${m.s2||'—'}</span>
+            <span class="bt-score">${m.s2 || '—'}</span>
           </div>
         </div>`;
     }).join('');
@@ -738,9 +749,9 @@ document.getElementById('bracketTournament').addEventListener('change', function
 
 async function renderStandings() {
   const data = await fetchAPI('standings', 'standings');
-  document.getElementById('standingsBody').innerHTML = data.map((t,i) => {
-    const rowClass = i<4?'qual-row':i>=7?'elim-row':'';
-    const nrrClass = t.nrr.startsWith('+')?'nrr-pos':'nrr-neg';
+  document.getElementById('standingsBody').innerHTML = data.map((t, i) => {
+    const rowClass = i < 4 ? 'qual-row' : i >= 7 ? 'elim-row' : '';
+    const nrrClass = t.nrr.startsWith('+') ? 'nrr-pos' : 'nrr-neg';
     return `
       <tr class="${rowClass}">
         <td><span class="rank-badge">${t.pos}</span></td>
@@ -753,9 +764,9 @@ async function renderStandings() {
 
 // ── Match History ──────────────────────────────────────────────────────────
 
-async function renderHistory(filter='all') {
+async function renderHistory(filter = 'all') {
   const data = await fetchAPI('matches/history', 'matchHistory');
-  const filtered = filter==='all' ? data : data.filter(m=>m.format===filter);
+  const filtered = filter === 'all' ? data : data.filter(m => m.format === filter);
   document.getElementById('historyList').innerHTML = filtered.map(m => `
     <div class="history-card">
       <div>
@@ -775,7 +786,7 @@ async function renderHistory(filter='all') {
 
 document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn[data-filter]').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderHistory(btn.dataset.filter);
   });
@@ -787,7 +798,7 @@ document.getElementById('tournamentSelect').addEventListener('change', renderSta
 
 document.getElementById('searchInput').addEventListener('input', function () {
   const q = this.value.toLowerCase().trim();
-  ['.match-card','.stat-table tbody tr','.history-card'].forEach(sel => {
+  ['.match-card', '.stat-table tbody tr', '.history-card'].forEach(sel => {
     document.querySelectorAll(sel).forEach(el => {
       el.style.display = !q || el.textContent.toLowerCase().includes(q) ? '' : 'none';
     });
@@ -864,44 +875,51 @@ function setModalHeader(t1, t2, s1, o1, s2, o2, crr, venue, isLive) {
 // ── Fetch & render scorecard ────────────────────────────────────────────────
 async function loadModalScorecard(matchId, isLive) {
   showModalLoading();
-
-  // ── MOCK path: serve scorecard from local MOCK data (no API call) ──────
-  if (String(matchId).startsWith('mock-')) {
-    const idx = parseInt(String(matchId).replace('mock-', ''), 10);
-    const mockSc = MOCK.scorecards[idx];
-    if (mockSc) {
-      // Convert MOCK scorecard format → Cricbuzz API shape so the same
-      // renderers work for both real and mock data
-      currentScorecardData = buildMockScorecardShape(mockSc);
-      renderModalTab(currentModalTab);
-    } else {
-      showModalError('No scorecard data available for this match.');
-    }
-    return;
-  }
-
-  // ── REAL path: fetch from Cricbuzz API via backend ─────────────────────
   try {
     const res = await fetch(`${API_BASE}/cricbuzz/scorecard/${matchId}`, {
-      signal: AbortSignal.timeout(10000),
+      signal: AbortSignal.timeout(12000),
     });
     if (!res.ok) throw new Error(`Server returned HTTP ${res.status}`);
     const json = await res.json();
-    if (!json.success || !json.data) throw new Error(json.error || 'Empty response from API');
+    if (!json.success || !json.data) throw new Error(json.error || 'Empty scorecard response');
+
     currentScorecardData = json.data;
 
-    // Refresh modal header from live API data if available
-    const scoreDetails = json.data.matchScoreDetails?.inningsScoreList || [];
-    if (scoreDetails.length) {
-      const i1 = scoreDetails[0] || {}, i2 = scoreDetails[1] || {};
+    // ── Debug: log full structure to console so we can see what keys exist ──
+    const _sc = json.data.scoreCard || json.data.scorecard || [];
+    console.group('[CricPulse] Scorecard API response');
+    console.log('Top-level keys:', Object.keys(json.data));
+    console.log('scoreCard length:', _sc.length);
+    if (_sc[0]) {
+      console.log('Inn[0] keys:', Object.keys(_sc[0]));
+      console.log('batTeamDetails keys:', _sc[0].batTeamDetails ? Object.keys(_sc[0].batTeamDetails) : 'MISSING');
+      console.log('batsmenData sample:', JSON.stringify(_sc[0].batTeamDetails?.batsmenData)?.slice(0, 300));
+    }
+    console.groupEnd();
+
+    // ── Update modal header with live scores from API ──────────────────────
+    const inningsList = json.data.matchScoreDetails?.inningsScoreList || [];
+    if (inningsList.length >= 1) {
+      const i1 = inningsList[0] || {};
+      const i2 = inningsList[1] || {};
+
+      // Build score strings safely
+      const fmt = (inn) => inn.score != null
+        ? `${inn.score}/${inn.wickets ?? inn.wkts ?? 0}`
+        : (inn.batTeamName ? 'Yet to bat' : '—');
+
       const crr = json.data.matchScoreDetails?.currentRunRate
-        ? `CRR: ${json.data.matchScoreDetails.currentRunRate}` : '';
+        ? `CRR: ${parseFloat(json.data.matchScoreDetails.currentRunRate).toFixed(2)}`
+        : '';
       const hdr = json.data.matchHeader || {};
-      const venue = hdr.venue?.name ? `${hdr.venue.name}, ${hdr.venue.city || ''}` : '';
+      const venue = hdr.venue?.name
+        ? `${hdr.venue.name}${hdr.venue.city ? ', ' + hdr.venue.city : ''}`
+        : '';
+
       setModalHeader(
         i1.batTeamName || '', i2.batTeamName || '',
-        i1.score != null ? `${i1.score}/${i1.wickets}` : '—', String(i1.overs || ''),
-        i2.score != null ? `${i2.score}/${i2.wickets}` : 'Yet to bat', String(i2.overs || ''),
+        fmt(i1), String(i1.overs || ''),
+        fmt(i2), String(i2.overs || ''),
         crr, venue, isLive
       );
     }
@@ -915,83 +933,12 @@ async function loadModalScorecard(matchId, isLive) {
         <div style="font-size:14px;color:var(--text2)">Could not load scorecard</div>
         <div style="font-size:12px;color:var(--text3);margin-top:4px">${e.message}</div>
         <button onclick="loadModalScorecard('${matchId}', ${isLive})"
-          style="margin-top:14px;padding:8px 20px;background:var(--accent);color:#000;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">
-          <i class="fas fa-rotate-right"></i>&nbsp; Retry
+          style="margin-top:14px;padding:8px 20px;background:var(--accent);color:#000;
+          border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">
+          <i class="fas fa-rotate-right"></i> Retry
         </button>
       </div>`;
   }
-}
-
-// Convert MOCK.scorecards[n] into the same shape Cricbuzz API returns
-// so renderBattingTab / renderBowlingTab work identically for both
-function buildMockScorecardShape(sc) {
-  const makeInnings = (teamName, batting, bowling) => ({
-    batTeamDetails: {
-      batTeamShortName: teamName,
-      batsmenData: Object.fromEntries(
-        batting.map((b, i) => [i, {
-          batName:    b.name,
-          runs:       b.runs,
-          balls:      b.balls,
-          fours:      b.fours,
-          sixes:      b.sixes,
-          strikeRate: b.sr,
-          outDesc:    b.status === 'out' ? b.how : '',
-        }])
-      ),
-    },
-    bowlTeamDetails: {
-      bowlTeamShortName: teamName === sc.team1.name ? sc.team2.name : sc.team1.name,
-      bowlersData: Object.fromEntries(
-        bowling.map((b, i) => [i, {
-          bowlName: b.name,
-          overs:    b.overs,
-          maidens:  b.maiden,
-          runs:     b.runs,
-          wickets:  b.wkts,
-          economy:  b.econ,
-          wides:    0,
-          noBalls:  0,
-        }])
-      ),
-    },
-    scoreDetails: (() => {
-      const score = teamName === sc.team1.name ? sc.team1.score : sc.team2.score;
-      const overs = teamName === sc.team1.name ? sc.team1.overs : sc.team2.overs;
-      const parts = score.split('/');
-      return { runs: parseInt(parts[0]) || 0, wickets: parseInt(parts[1]) || 0, overs: overs };
-    })(),
-    extrasData: { byes:0, legByes:0, wides:0, noBalls:0, extras:0 },
-    overSummaryList: sc.ballByBall?.map(ov => ({
-      ovNum: ov.over, score: ov.balls.join(','), totalRuns: ov.balls.filter(b=>!isNaN(b)).reduce((a,b)=>a+parseInt(b),0)
-    })) || [],
-    wicketsData: Object.fromEntries(
-      (sc.fow || []).map((f, i) => [i, {
-        wktRuns: f.score.split('/')[0], wktNbr: f.score.split('/')[1],
-        batName: f.name, wktOver: f.over
-      }])
-    ),
-  });
-
-  return {
-    matchHeader: {
-      matchFormat: sc.match?.includes('T20') ? 'T20' : sc.match?.includes('ODI') ? 'ODI' : 'Test',
-      seriesName:  sc.match || '',
-      status:      sc.status || 'live',
-      venue: { name: sc.venue || '', city: '' },
-      tossResults: {},
-    },
-    scoreCard: [
-      makeInnings(sc.team1.name, sc.batting, sc.bowling),
-    ],
-    matchScoreDetails: {
-      currentRunRate: sc.crr,
-      inningsScoreList: [
-        { batTeamName: sc.team1.name, score: parseInt(sc.team1.score), wickets: parseInt(sc.team1.score.split('/')[1]), overs: sc.team1.overs },
-        { batTeamName: sc.team2.name, score: parseInt(sc.team2.score), wickets: parseInt(sc.team2.score.split('/')[1]), overs: sc.team2.overs },
-      ],
-    },
-  };
 }
 
 function showModalLoading() {
@@ -1019,16 +966,16 @@ function renderModalTab(tab) {
 
   if (!currentScorecardData) { showModalLoading(); return; }
 
-  const sc   = currentScorecardData;
+  const sc = currentScorecardData;
   const body = document.getElementById('modalBody');
 
   if (tab === 'info') { renderModalInfo(sc, body); return; }
 
-  // Cricbuzz uses 'scoreCard' (capital C). Also support lowercase fallback.
+  // Cricbuzz API uses 'scoreCard' (capital C) — support both casings
   const scorecard = sc.scoreCard || sc.scorecard || [];
 
   if (!scorecard.length) {
-    // No detailed innings yet — show summary scores if available
+    // No full scorecard yet — show score totals from matchScoreDetails if available
     const inningsList = sc.matchScoreDetails?.inningsScoreList || [];
     if (inningsList.length) {
       body.innerHTML = `
@@ -1040,12 +987,12 @@ function renderModalTab(tab) {
                 ${inn.batTeamName || 'Team ' + (i + 1)}
               </div>
               <div style="font-family:var(--font-mono);font-size:22px;color:var(--accent);font-weight:700">
-                ${inn.score ?? 0}/${inn.wickets ?? 0}
+                ${inn.score ?? 0}/${inn.wickets ?? inn.wkts ?? 0}
                 <span style="font-size:13px;color:var(--text3)"> (${inn.overs ?? 0} ov)</span>
               </div>
             </div>`).join('')}
-          <div style="margin-top:16px;text-align:center;font-size:12px;color:var(--text3)">
-            <i class="fas fa-circle-info"></i>&nbsp; Full batting/bowling card not yet available
+          <div style="margin-top:12px;text-align:center;font-size:12px;color:var(--text3)">
+            <i class="fas fa-circle-info"></i> Full batting/bowling card loading...
           </div>
         </div>`;
     } else {
@@ -1057,14 +1004,15 @@ function renderModalTab(tab) {
     return;
   }
 
-  // Clamp currentInnings to valid range
+  // Clamp currentInnings index
   if (currentInnings >= scorecard.length) currentInnings = 0;
 
-  // Build innings toggle tabs
+  // Build innings toggle buttons
   const inningsTabs = scorecard.map((inn, i) => {
     const label = inn.batTeamDetails?.batTeamShortName
+      || inn.batteamsname
       || inn.batTeamDetails?.batTeamName?.slice(0, 3).toUpperCase()
-      || `Inn`;
+      || ('Inn ' + (i + 1));
     return `<button class="innings-btn ${i === currentInnings ? 'active' : ''}"
       onclick="selectInnings(${i})">${label} ${i + 1}</button>`;
   }).join('');
@@ -1075,10 +1023,11 @@ function renderModalTab(tab) {
     return;
   }
 
-  if      (tab === 'batting') renderBattingTab(inn, inningsTabs, body);
+  if (tab === 'batting') renderBattingTab(inn, inningsTabs, body);
   else if (tab === 'bowling') renderBowlingTab(inn, inningsTabs, body);
-  else if (tab === 'bbb')     renderBBBTab(sc, inningsTabs, body);
-  else if (tab === 'fow')     renderFOWTab(inn, inningsTabs, body);
+  else if (tab === 'bbb') renderBBBTab(sc, inningsTabs, body);
+  else if (tab === 'fow') renderFOWTab(inn, inningsTabs, body);
+  else if (tab === 'debug') { renderDebugTab(sc, inn, body); return; } // async — fires independently
 }
 
 function selectInnings(idx) {
@@ -1088,39 +1037,52 @@ function selectInnings(idx) {
 
 // ── Batting tab ─────────────────────────────────────────────────────────────
 function renderBattingTab(inn, inningsTabs, body) {
+  // batsmenData may be object {"0":{...}} or array — server normalises, but handle both
   const batsmenRaw = inn.batTeamDetails?.batsmenData || {};
-  // batsmenData is an object with numeric keys {"0":{...},"1":{...}} or array
-  const batters  = Array.isArray(batsmenRaw) ? batsmenRaw : Object.values(batsmenRaw);
-  const total    = inn.scoreDetails;
+  const batters = Array.isArray(batsmenRaw)
+    ? batsmenRaw
+    : Object.values(batsmenRaw);
+
+  const total = inn.scoreDetails;
   const teamName = inn.batTeamDetails?.batTeamShortName
     || inn.batTeamDetails?.batTeamName || 'BAT';
 
-  const rows = batters.length ? batters.map(b => {
-    // outDesc is empty string ('') when NOT out, non-empty when dismissed
-    const isOut     = b.outDesc && b.outDesc.trim() !== '';
-    const isBatting = !isOut && b.runs != null;
-    const cls       = isBatting ? 'batting-current' : isOut ? 'out-row' : '';
-    const sr        = b.strikeRate ?? (b.balls > 0 ? ((b.runs / b.balls) * 100).toFixed(1) : '0.00');
-    return `<tr class="${cls}">
-      <td>
-        <div style="font-weight:500">${b.batName || b.name || '—'}
-          ${isBatting ? '<span style="color:var(--accent);font-size:10px;margin-left:6px">★ batting</span>' : ''}
-        </div>
-        <div style="font-size:11px;color:var(--text3)">${isOut ? b.outDesc : 'not out'}</div>
-      </td>
-      <td class="highlight">${b.runs ?? '—'}</td>
-      <td>${b.balls ?? '—'}</td>
-      <td>${b.fours ?? 0}</td>
-      <td>${b.sixes ?? 0}</td>
-      <td>${sr}</td>
-    </tr>`;
-  }).join('') : `<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--text3)">
-    <i class="fas fa-clock"></i>&nbsp; No batting data yet for this innings
-  </td></tr>`;
+  const rows = batters.length
+    ? batters.map(b => {
+      // Map all Cricbuzz field name variants across API versions
+      const runs = b.runs ?? 0;
+      const balls = b.balls ?? 0;
+      const fours = b.fours ?? 0;
+      const sixes = b.sixes ?? 0;
+      const name = b.batName || b.name || b.batFullName || '—';
+      const outDesc = b.outDesc || b.dismissal || b.howOut || '';
+      // Server sets outDesc='' for not-out and isBatting=true for current batsmen
+      const isOut = outDesc.trim().length > 0;
+      const isBatting = b.isBatting === true || (!isOut && runs > 0);
+      const cls = isBatting ? 'batting-current' : isOut ? 'out-row' : '';
+      const sr = b.strikeRate ?? b.strkRate ?? b.strkrate ?? b.sr
+        ?? (balls > 0 ? ((runs / balls) * 100).toFixed(1) : '0.00');
+      return `<tr class="${cls}">
+          <td>
+            <div style="font-weight:500">${name}
+              ${isBatting ? '<span style="color:var(--accent);font-size:10px;margin-left:6px">★ batting</span>' : ''}
+            </div>
+            <div style="font-size:11px;color:var(--text3)">${isOut ? outDesc : 'not out'}</div>
+          </td>
+          <td class="highlight">${runs}</td>
+          <td>${balls}</td>
+          <td>${fours}</td>
+          <td>${sixes}</td>
+          <td>${sr}</td>
+        </tr>`;
+    }).join('')
+    : `<tr><td colspan="6" style="padding:24px;text-align:center;color:var(--text3)">
+        <i class="fas fa-clock"></i> No batting data yet for this innings
+      </td></tr>`;
 
-  const extras    = inn.extrasData;
+  const extras = inn.extrasData;
   const extrasStr = extras
-    ? `B ${extras.byes||0}, LB ${extras.legByes||0}, WD ${extras.wides||0}, NB ${extras.noBalls||0} = ${extras.extras||0}`
+    ? `B ${extras.byes || 0}, LB ${extras.legByes || 0}, WD ${extras.wides || 0}, NB ${extras.noBalls || 0} = ${extras.extras || 0}`
     : '—';
 
   body.innerHTML = `
@@ -1128,8 +1090,8 @@ function renderBattingTab(inn, inningsTabs, body) {
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
       <div style="font-family:var(--font-display);font-size:20px;letter-spacing:2px">${teamName} Innings</div>
       ${total ? `<div style="font-family:var(--font-mono);font-size:15px;color:var(--accent)">
-        ${total.runs||0}/${total.wickets||0}
-        <span style="font-size:12px;color:var(--text3)"> (${total.overs||0} ov)</span>
+        ${total.runs || 0}/${total.wickets ?? total.wkts ?? 0}
+        <span style="font-size:12px;color:var(--text3)"> (${total.overs || 0} ov)</span>
       </div>` : ''}
     </div>
     <div class="table-wrap">
@@ -1139,29 +1101,44 @@ function renderBattingTab(inn, inningsTabs, body) {
       </table>
     </div>
     <div style="margin-top:14px;padding:12px 16px;background:var(--bg3);border-radius:8px;
-      font-size:12px;color:var(--text2);font-family:var(--font-mono)">EXTRAS: ${extrasStr}</div>`;
+      font-size:12px;color:var(--text2);font-family:var(--font-mono)">
+      EXTRAS: ${extrasStr}
+    </div>`;
 }
 
 // ── Bowling tab ─────────────────────────────────────────────────────────────
 function renderBowlingTab(inn, inningsTabs, body) {
   const bowlersRaw = inn.bowlTeamDetails?.bowlersData || {};
-  const bowlers    = Array.isArray(bowlersRaw) ? bowlersRaw : Object.values(bowlersRaw);
-  const teamName   = inn.bowlTeamDetails?.bowlTeamShortName
+  const bowlers = Array.isArray(bowlersRaw)
+    ? bowlersRaw
+    : Object.values(bowlersRaw);
+  const teamName = inn.bowlTeamDetails?.bowlTeamShortName
     || inn.bowlTeamDetails?.bowlTeamName || 'BOWL';
 
-  const rows = bowlers.length ? bowlers.map(b => `
-    <tr>
-      <td style="font-weight:500">${b.bowlName || b.name || '—'}</td>
-      <td>${b.overs ?? '—'}</td>
-      <td>${b.maidens ?? b.maiden ?? 0}</td>
-      <td>${b.runs ?? '—'}</td>
-      <td class="highlight">${b.wickets ?? b.wkts ?? 0}</td>
-      <td>${b.economy ?? b.econ ?? '—'}</td>
-      <td>${b.wides ?? 0} / ${b.noBalls ?? 0}</td>
-    </tr>`).join('')
-  : `<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--text3)">
-      <i class="fas fa-clock"></i>&nbsp; No bowling data yet
-    </td></tr>`;
+  const rows = bowlers.length
+    ? bowlers.map(b => {
+      // Map all Cricbuzz field name variants across API versions
+      const name = b.bowlName || b.name || b.bowlFullName || '—';
+      const overs = b.overs ?? b.ov ?? '—';
+      const maidens = b.maidens ?? b.maiden ?? b.md ?? 0;
+      const runs = b.runs ?? b.r ?? '—';
+      const wickets = b.wickets ?? b.wkts ?? b.wkt ?? 0;
+      const economy = b.economy ?? b.econ ?? b.eco ?? '—';
+      const wides = b.wides ?? b.wd ?? 0;
+      const noBalls = b.noBalls ?? b.nb ?? 0;
+      return `<tr>
+          <td style="font-weight:500">${name}</td>
+          <td>${overs}</td>
+          <td>${maidens}</td>
+          <td>${runs}</td>
+          <td class="highlight">${wickets}</td>
+          <td>${economy}</td>
+          <td>${wides} / ${noBalls}</td>
+        </tr>`;
+    }).join('')
+    : `<tr><td colspan="7" style="padding:24px;text-align:center;color:var(--text3)">
+        <i class="fas fa-clock"></i> No bowling data yet
+      </td></tr>`;
 
   body.innerHTML = `
     <div class="innings-toggle">${inningsTabs}</div>
@@ -1175,7 +1152,6 @@ function renderBowlingTab(inn, inningsTabs, body) {
       </table>
     </div>`;
 }
-
 
 // ── Ball by ball tab ────────────────────────────────────────────────────────
 function renderBBBTab(sc, inningsTabs, body) {
@@ -1222,12 +1198,14 @@ function renderBBBTab(sc, inningsTabs, body) {
 
 // ── Fall of wickets tab ─────────────────────────────────────────────────────
 function renderFOWTab(inn, inningsTabs, body) {
-  const fow = Object.values(inn.wicketsData || {});
+  // wicketsData is normalised to array by server; handle both just in case
+  const fowRaw = inn.wicketsData || {};
+  const fow = Array.isArray(fowRaw) ? fowRaw : Object.values(fowRaw);
 
-  const chips = fow.map(w => `
+  const chips = fow.map((w, i) => `
     <div class="fow-chip">
-      <div class="fow-score">${w.wktRuns ?? '—'}/${w.wktNbr ?? '?'}</div>
-      <div class="fow-name">${w.batName || '—'}</div>
+      <div class="fow-score">${w.wktRuns ?? '—'}/${i + 1}</div>
+      <div class="fow-name">${w.batName || w.batsmanname || '—'}</div>
       <div class="fow-over">Ov ${w.wktOver ?? '?'}</div>
     </div>`).join('') || `<div style="color:var(--text3);padding:20px 0">No wickets fallen yet</div>`;
 
@@ -1241,19 +1219,19 @@ function renderFOWTab(inn, inningsTabs, body) {
 function renderModalInfo(sc, body) {
   const info = sc.matchHeader || {};
   const venue = info.venue || {};
-  const toss  = info.tossResults || {};
+  const toss = info.tossResults || {};
 
   const items = [
-    { label: 'Match Type',  val: info.matchFormat || info.matchType || '—' },
-    { label: 'Venue',       val: venue.name ? `${venue.name}, ${venue.city || ''}` : '—' },
-    { label: 'Toss',        val: toss.tossWinnerName ? `${toss.tossWinnerName} won, chose to ${toss.decision}` : '—' },
-    { label: 'Status',      val: info.status || '—' },
-    { label: 'Series',      val: info.seriesName || '—' },
-    { label: 'Match No.',   val: info.matchDescription || '—' },
-    { label: 'Umpire 1',    val: info.umpire1?.name || '—' },
-    { label: 'Umpire 2',    val: info.umpire2?.name || '—' },
-    { label: 'Third Umpire',val: info.umpire3?.name || '—' },
-    { label: 'Match Referee',val: info.referee?.name || '—' },
+    { label: 'Match Type', val: info.matchFormat || info.matchType || '—' },
+    { label: 'Venue', val: venue.name ? `${venue.name}, ${venue.city || ''}` : '—' },
+    { label: 'Toss', val: toss.tossWinnerName ? `${toss.tossWinnerName} won, chose to ${toss.decision}` : '—' },
+    { label: 'Status', val: info.status || '—' },
+    { label: 'Series', val: info.seriesName || '—' },
+    { label: 'Match No.', val: info.matchDescription || '—' },
+    { label: 'Umpire 1', val: info.umpire1?.name || '—' },
+    { label: 'Umpire 2', val: info.umpire2?.name || '—' },
+    { label: 'Third Umpire', val: info.umpire3?.name || '—' },
+    { label: 'Match Referee', val: info.referee?.name || '—' },
   ];
 
   body.innerHTML = `
@@ -1274,7 +1252,7 @@ document.querySelectorAll('.modal-tab').forEach(btn => {
 
 // ── Close modal ─────────────────────────────────────────────────────────────
 document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('scorecardModal').addEventListener('click', function(e) {
+document.getElementById('scorecardModal').addEventListener('click', function (e) {
   if (e.target === this) closeModal();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
@@ -1285,6 +1263,62 @@ function closeModal() {
   clearInterval(modalRefreshTimer);
   currentModalMatchId = null;
 }
+
+// ── Debug tab — shows raw API structure ─────────────────────────────────────
+async function renderDebugTab(sc, inn, body) {
+  body.innerHTML = `
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--text2);padding:4px 0">
+      <div style="font-family:var(--font-display);font-size:18px;letter-spacing:2px;margin-bottom:14px;color:var(--accent)">
+        🔍 Raw hscard Response — matchId: ${currentModalMatchId}
+      </div>
+      <div id="debugResults">
+        <div style="color:var(--text3)"><i class="fas fa-spinner fa-spin"></i> Fetching raw API response...</div>
+      </div>
+    </div>`;
+
+  if (!currentModalMatchId) {
+    document.getElementById('debugResults').innerHTML = '<div style="color:#f87171">No matchId</div>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/cricbuzz/debug/${currentModalMatchId}`);
+    const json = await res.json();
+    const raw = json.raw || json;
+
+    // Walk the raw object and show every key/value up to 2 levels deep
+    const topKeys = Object.keys(raw);
+
+    const sections = topKeys.map(k => {
+      const val = raw[k];
+      const preview = typeof val === 'object' && val !== null
+        ? (Array.isArray(val)
+          ? `Array[${val.length}] → first item keys: ${val[0] ? Object.keys(val[0]).join(', ') : 'empty'}`
+          : `Object keys: ${Object.keys(val).join(', ')}`)
+        : String(val);
+
+      // For arrays/objects, also show a JSON snippet
+      let snippet = '';
+      if (Array.isArray(val) && val[0]) {
+        snippet = `<pre style="color:#fbbf24;white-space:pre-wrap;font-size:10px;margin:6px 0 0;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;max-height:200px;overflow:auto">${JSON.stringify(val[0], null, 2).slice(0, 800)}</pre>`;
+      } else if (typeof val === 'object' && val !== null && !Array.isArray(val)) {
+        snippet = `<pre style="color:#a78bfa;white-space:pre-wrap;font-size:10px;margin:6px 0 0;background:rgba(0,0,0,0.3);padding:6px;border-radius:4px;max-height:200px;overflow:auto">${JSON.stringify(val, null, 2).slice(0, 800)}</pre>`;
+      }
+
+      return `<div style="background:var(--bg3);border-radius:8px;padding:12px;margin-bottom:8px">
+        <div style="color:#4ade80;font-weight:600;margin-bottom:4px">"${k}"</div>
+        <div style="color:var(--text2)">${preview}</div>
+        ${snippet}
+      </div>`;
+    }).join('');
+
+    document.getElementById('debugResults').innerHTML = sections;
+  } catch (e) {
+    document.getElementById('debugResults').innerHTML =
+      `<div style="color:#f87171">Fetch failed: ${e.message}</div>`;
+  }
+}
+
 
 async function initAll() {
   await renderMatches();
