@@ -3,7 +3,10 @@
 // Live Scorecard Modal added
 // ===========================
 
-const API_BASE = 'http://localhost:5000/api';
+// Auto-detect API base: use same origin in production, localhost in dev
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : '/api';
 
 // ── Mock Data ──────────────────────────────────────────────────────────────
 

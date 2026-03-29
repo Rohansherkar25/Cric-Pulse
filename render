@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: cricpulse
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: RAPIDAPI_KEY
+        sync: false
+      - key: RAPIDAPI_HOST
+        value: cricbuzz-cricket.p.rapidapi.com
