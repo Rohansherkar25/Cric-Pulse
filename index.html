@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CricPulse — Live Cricket Statistics</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">🏏</span>
+      <span class="logo-text">CricPulse</span>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-item active" data-section="live"><i class="fas fa-circle-dot"></i> <span>Live Scores</span></a>
+      <a href="#" class="nav-item" data-section="scorecard"><i class="fas fa-list-ol"></i> <span>Scorecard</span></a>
+      <a href="#" class="nav-item" data-section="players"><i class="fas fa-user-group"></i> <span>Player Stats</span></a>
+      <a href="#" class="nav-item" data-section="profile"><i class="fas fa-id-card"></i> <span>Player Profile</span></a>
+      <a href="#" class="nav-item" data-section="icc"><i class="fas fa-globe"></i> <span>ICC Rankings</span></a>
+      <a href="#" class="nav-item" data-section="bracket"><i class="fas fa-sitemap"></i> <span>Tournament</span></a>
+      <a href="#" class="nav-item" data-section="standings"><i class="fas fa-trophy"></i> <span>Standings</span></a>
+      <a href="#" class="nav-item" data-section="history"><i class="fas fa-clock-rotate-left"></i> <span>Match History</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="api-status"><span class="dot live"></span> API Connected</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title" id="pageTitle">Live Scores</h1>
+        <span class="page-subtitle" id="pageSubtitle">Real-time match updates</span>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search teams, players..." id="searchInput"/>
+        </div>
+        <button class="refresh-btn" id="refreshBtn"><i class="fas fa-rotate-right"></i></button>
+      </div>
+    </header>
+
+    <!-- LIVE SCORES -->
+    <section class="section active" id="section-live">
+      <div class="live-banner">
+        <span class="live-badge"><span class="pulse-dot"></span> LIVE</span>
+        <span>3 matches in progress</span>
+      </div>
+      <div class="matches-grid" id="matchesGrid"></div>
+    </section>
+
+    <!-- SCORECARD -->
+    <section class="section" id="section-scorecard">
+      <div class="scorecard-picker">
+        <select class="tournament-select" id="scorecardMatchSelect">
+          <option value="0">IND vs AUS — T20I, Wankhede</option>
+          <option value="1">ENG vs NZ — ODI, Lord's</option>
+          <option value="2">SA vs PAK — Test, MCG</option>
+        </select>
+      </div>
+      <div id="scorecardContent"></div>
+    </section>
+
+    <!-- PLAYER STATS -->
+    <section class="section" id="section-players">
+      <div class="stat-tabs">
+        <button class="stat-tab active" data-type="batting">Batting</button>
+        <button class="stat-tab" data-type="bowling">Bowling</button>
+      </div>
+      <div class="table-wrap">
+        <table class="stat-table">
+          <thead id="playerTableHead"></thead>
+          <tbody id="playerTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PLAYER PROFILE -->
+    <section class="section" id="section-profile">
+      <div class="profile-picker">
+        <div class="profile-search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="profileSearchInput" placeholder="Type player name to search..."/>
+        </div>
+        <div class="profile-suggestions" id="profileSuggestions"></div>
+      </div>
+      <div id="profileCard"></div>
+    </section>
+
+    <!-- ICC RANKINGS -->
+    <section class="section" id="section-icc">
+      <div class="icc-controls">
+        <div class="icc-tabs">
+          <button class="stat-tab active" data-format="test">Test</button>
+          <button class="stat-tab" data-format="odi">ODI</button>
+          <button class="stat-tab" data-format="t20">T20I</button>
+        </div>
+        <div class="icc-subtabs">
+          <button class="filter-btn active" data-role="batting">Batting</button>
+          <button class="filter-btn" data-role="bowling">Bowling</button>
+          <button class="filter-btn" data-role="allrounder">All-rounder</button>
+          <button class="filter-btn" data-role="team">Team</button>
+        </div>
+      </div>
+      <div class="table-wrap" style="margin-top:20px">
+        <table class="stat-table">
+          <thead id="iccHead"></thead>
+          <tbody id="iccBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TOURNAMENT BRACKET -->
+    <section class="section" id="section-bracket">
+      <div class="bracket-header">
+        <select class="tournament-select" id="bracketTournament">
+          <option>ICC World Cup 2025</option>
+          <option>IPL 2025</option>
+          <option>Asia Cup 2025</option>
+        </select>
+        <div class="bracket-legend">
+          <span class="legend-item leg-win">✓ Winner</span>
+          <span class="legend-item leg-live">● Live</span>
+          <span class="legend-item leg-up">○ Upcoming</span>
+        </div>
+      </div>
+      <div class="bracket-wrap" id="bracketWrap"></div>
+    </section>
+
+    <!-- STANDINGS -->
+    <section class="section" id="section-standings">
+      <div class="standings-header">
+        <select class="tournament-select" id="tournamentSelect">
+          <option>ICC World Cup 2025</option>
+          <option>IPL 2025</option>
+          <option>Asia Cup 2025</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table class="stat-table">
+          <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>L</th><th>NR</th><th>NRR</th><th>Pts</th></tr></thead>
+          <tbody id="standingsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MATCH HISTORY -->
+    <section class="section" id="section-history">
+      <div class="history-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="test">Test</button>
+        <button class="filter-btn" data-filter="odi">ODI</button>
+        <button class="filter-btn" data-filter="t20">T20</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+
+  </main>
+
+
+  <!-- ── LIVE SCORECARD MODAL ──────────────────────────────────── -->
+  <div class="modal-overlay hidden" id="scorecardModal">
+    <div class="scorecard-modal">
+
+      <!-- Top bar -->
+      <div class="modal-topbar">
+        <span class="modal-title" id="modalTitle">Live Scorecard</span>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span id="modalAutoRefreshBadge" style="font-family:var(--font-mono);font-size:10px;color:var(--accent);display:none">
+            <i class="fas fa-rotate-right" style="animation:spin 2s linear infinite"></i> Auto-refresh ON
+          </span>
+          <button class="modal-close" id="modalClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <!-- Score header -->
+      <div class="modal-score-header" id="modalScoreHeader">
+        <div class="modal-team" id="modalTeam1">
+          <div class="modal-team-name">—</div>
+          <div class="modal-team-score">—</div>
+          <div class="modal-team-overs"></div>
+        </div>
+        <div class="modal-center">
+          <div class="modal-live-badge"><span class="pulse-dot"></span> LIVE</div>
+          <div class="modal-crr" id="modalCRR">—</div>
+          <div class="modal-status-text" id="modalStatusText"></div>
+        </div>
+        <div class="modal-team right" id="modalTeam2">
+          <div class="modal-team-name">—</div>
+          <div class="modal-team-score">—</div>
+          <div class="modal-team-overs"></div>
+        </div>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="batting">🏏 Batting</button>
+        <button class="modal-tab" data-tab="bowling">🎳 Bowling</button>
+        <button class="modal-tab" data-tab="bbb">📊 Ball by Ball</button>
+        <button class="modal-tab" data-tab="fow">🔻 Fall of Wickets</button>
+        <button class="modal-tab" data-tab="info">ℹ️ Match Info</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body" id="modalBody">
+        <div class="modal-loading">
+          <i class="fas fa-spinner"></i>
+          <span>Loading scorecard...</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
