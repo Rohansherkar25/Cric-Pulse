@@ -8,11 +8,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+
+// Allow all origins (required for Render deployment)
+app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'] }));
 app.use(express.json());
+
+// Serve frontend — works both locally and on Render
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
 // ── Cricbuzz API Config ─────────────────────────────────────────────────────
@@ -612,8 +618,13 @@ app.patch('/api/bracket/:id/match', async (req, res) => {
 
 // ── 404 ──────────────────────────────────────────────────────────────────
 
-app.use((req, res) => {
-  res.status(404).json({ error: `Route ${req.method} ${req.url} not found` });
+// Serve frontend for all non-API routes (required for page refresh on Render)
+app.get('*', (req, res) => {
+  if (!req.url.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } else {
+    res.status(404).json({ error: `Route ${req.method} ${req.url} not found` });
+  }
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────
